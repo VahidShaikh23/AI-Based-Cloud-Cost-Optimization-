@@ -1,0 +1,35 @@
+TRAFFIC FORECASTING & COST OPTIMIZATION PROJECT REPORT
+============================================================
+
+Generated: 2025-07-04 15:57:30
+
+PIPELINE EXECUTION SUMMARY:
+------------------------------
+DATA_ANALYSIS: COMPLETED
+  Timestamp: 2025-07-04T15:57:22.379237
+
+MODEL_TRAINING: COMPLETED
+  Timestamp: 2025-07-04T15:57:30.699981
+
+GENERATED FILES:
+--------------------
+✅ data/processed_traffic_data.csv
+✅ models/scaler.pkl
+✅ config/feature_columns.json
+✅ config/server_thresholds.json
+✅ output_graphs/traffic_over_time.png
+✅ output_graphs/hourly_patterns.png
+✅ output_graphs/daily_patterns.png
+✅ output_graphs/traffic_heatmap.png
+✅ output_graphs/traffic_distribution_with_thresholds.png
+✅ output_graphs/cost_analysis.png
+✅ models/best_traffic_model.pkl
+✅ models/model_metadata.json
+✅ models/evaluation_results.json
+✅ data/traffic_forecast.csv
+✅ models/forecast_report.json
+✅ output_graphs/model_predictions_scatter.png
+✅ output_graphs/time_series_predictions.png
+✅ output_graphs/feature_importance.png
+
+Report saved to: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250704_155730.txt

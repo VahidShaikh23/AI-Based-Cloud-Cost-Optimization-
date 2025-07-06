@@ -1,0 +1,44 @@
+{
+  "traffic_prediction_model": {
+    "name": "RandomForestRegressor",
+    "path": "models/traffic_prediction_model.pkl",
+    "trained_date": "2025-07-06T12:43:21.548641",
+    "feature_columns": [
+      "year",
+      "month",
+      "day",
+      "hour",
+      "day_of_week",
+      "is_weekend",
+      "is_business_hours",
+      "hour_sin",
+      "hour_cos",
+      "day_sin",
+      "day_cos",
+      "month_sin",
+      "month_cos",
+      "page_views_lag1",
+      "page_views_lag24",
+      "page_views_lag168",
+      "page_views_rolling_mean_24h",
+      "page_views_rolling_mean_7d",
+      "page_views_rolling_std_24h",
+      "page_views_rolling_max_24h",
+      "page_views_rolling_min_24h",
+      "page_views_trend_24h",
+      "page_views_volatility",
+      "traffic_source_Organic",
+      "traffic_source_Paid",
+      "traffic_source_Referral"
+    ],
+    "target_column": "page_views",
+    "scaler_path": "models/scaler.pkl"
+  },
+  "rl_agent": {
+    "name": "Q-Learning Agent (Simplified)",
+    "path": "models/rl_agent.pkl",
+    "trained_date": "2025-07-06T12:43:21.548647",
+    "description": "Reinforcement Learning agent for optimal server scaling recommendations."
+  },
+  "server_thresholds_config": "config/server_thresholds.json"
+}

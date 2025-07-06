@@ -1,0 +1,42 @@
+TRAFFIC FORECASTING & AI CLOUD COST OPTIMIZATION PROJECT REPORT
+============================================================
+
+Generated: 2025-07-05 17:05:43
+
+PIPELINE EXECUTION SUMMARY:
+------------------------------
+DATA_ANALYSIS: COMPLETED
+  Timestamp: 2025-07-05T17:05:29.944184
+
+MODEL_TRAINING: COMPLETED
+  Timestamp: 2025-07-05T17:05:43.821064
+
+RL_AGENT_TRAINING: COMPLETED
+  Timestamp: 2025-07-05T17:05:43.837550
+
+GENERATED FILES:
+--------------------
+📂 simulation_results/ (contents):
+  - ✅ simulation_results/simulation_results_20250705_170543.json
+  - ✅ simulation_results/simulation_results_20250705_165753.json
+✅ data/processed_traffic_data.csv
+✅ models/scaler.pkl
+✅ config/feature_columns.json
+✅ config/server_thresholds.json
+✅ output_graphs/traffic_over_time.png
+✅ output_graphs/hourly_patterns.png
+✅ output_graphs/daily_patterns.png
+✅ output_graphs/traffic_heatmap.png
+✅ output_graphs/traffic_distribution_with_thresholds.png
+✅ output_graphs/cost_analysis.png
+✅ models/best_traffic_model.pkl
+✅ models/model_metadata.json
+✅ models/evaluation_results.json
+✅ data/traffic_forecast.csv
+✅ models/forecast_report.json
+✅ output_graphs/model_predictions_scatter.png
+✅ output_graphs/time_series_predictions.png
+✅ output_graphs/feature_importance.png
+✅ models/autoscaling_agent.json
+
+Report saved to: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250705_170543.txt

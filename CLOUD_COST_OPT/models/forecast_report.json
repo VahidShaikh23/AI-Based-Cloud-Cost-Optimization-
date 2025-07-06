@@ -1,0 +1,17 @@
+{
+  "forecast_summary": {
+    "total_predictions": 101,
+    "avg_predicted_traffic": 865.0363680915644,
+    "max_predicted_traffic": 1674.2803532024068,
+    "min_predicted_traffic": 273.04266441487425,
+    "avg_servers_needed": 8.0,
+    "max_servers_needed": 8,
+    "total_predicted_cost": 134.45119999999994
+  },
+  "model_performance": {
+    "rmse": 28.35564926418655,
+    "mae": 22.91833869643939,
+    "r2_score": 0.99361293149488,
+    "mape": 3.2858244545905335
+  }
+}

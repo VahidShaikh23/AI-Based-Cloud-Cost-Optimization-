@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Cost Optimization Dashboard</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h3 {
+            color: #333;
+            margin-bottom: 16px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .metric-card {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 8px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .metric-value.highlight {
+            animation: pulse-grow 0.6s ease-out;
+            color: #764ba2;
+        }
+
+        @keyframes pulse-grow {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .metric-label {
+            color: #666;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: breathe 1.5s infinite alternate;
+        }
+
+        .status-healthy { background: #10b981; }
+        .status-warning { background: #f59e0b; }
+        .status-critical { background: #ef4444; }
+
+        @keyframes breathe {
+            0% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin-top: 16px;
+        }
+
+        .server-list {
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: 10px; /* For scrollbar */
+        }
+
+        .server-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            background: rgba(102, 126, 234, 0.05);
+            transition: all 0.3s ease, background 0.3s ease;
+            opacity: 0; /* For fade-in animation */
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .server-item:hover {
+            background: rgba(102, 126, 234, 0.15);
+            transform: translateX(4px);
+        }
+
+        .server-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .server-icon {
+            font-size: 1.5rem;
+            color: #764ba2;
+        }
+
+        .server-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .server-name {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .server-type {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .server-cost {
+            font-weight: 600;
+            color: #667eea;
+            font-size: 1.1rem;
+        }
+
+        .control-panel {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            background-color: #f9fafb;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: fit-content;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 28px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
+        .alert {
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            border-left: 4px solid;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .alert-success {
+            background: #ecfdf5;
+            color: #065f46;
+            border-left-color: #10b981;
+        }
+
+        .alert-warning {
+            background: #fffbeb;
+            color: #92400e;
+            border-left-color: #f59e0b;
+        }
+
+        .alert-error {
+            background: #fef2f2;
+            color: #991b1b;
+            border-left-color: #ef4444;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        /* Enhanced prediction results */
+        .prediction-results {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+            animation: fadeInScale 0.6s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .prediction-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .prediction-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .prediction-item {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            transition: transform 0.2s ease;
+        }
+        .prediction-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .prediction-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .prediction-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .scaling-simulation {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 16px;
+            backdrop-filter: blur(5px);
+        }
+
+        .scaling-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .scaling-progress {
+            height: 30px;
+            position: relative;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #10b981, #34d399);
+            width: 0%;
+            transition: width 0.5s ease-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 0 10px;
+        }
+
+        .simulation-log {
+            max-height: 180px;
+            overflow-y: auto;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 12px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .log-entry {
+            margin-bottom: 6px;
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .log-entry i {
+            font-size: 0.9rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .log-entry.success { color: #10b981; }
+        .log-entry.warning { color: #f59e0b; }
+        .log-entry.info { color: #3b82f6; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 12px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .prediction-details {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-cloud"></i> Cloud Cost Optimizer</h1>
+            <p>AI-powered traffic prediction and auto-scaling dashboard</p>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="card metric-card">
+                <h3><i class="fas fa-chart-line"></i> Current Traffic</h3>
+                <div class="metric-value" id="currentTraffic">--</div>
+                <div class="metric-label">Page Views/Hour</div>
+            </div>
+
+            <div class="card metric-card">
+                <h3><i class="fas fa-server"></i> Active Servers</h3>
+                <div class="metric-value" id="activeServers">--</div>
+                <div class="metric-label">Running Instances</div>
+            </div>
+
+            <div class="card metric-card">
+                <h3><i class="fas fa-money-bill-wave"></i> Current Cost</h3>
+                <div class="metric-value" id="currentCost">--</div>
+                <div class="metric-label">$/Hour</div>
+            </div>
+
+            <div class="card metric-card">
+                <h3><i class="fas fa-heartbeat"></i> API Status</h3>
+                <div class="metric-value">
+                    <span class="status-indicator" id="apiStatus"></span>
+                    <span id="apiStatusText">--</span>
+                </div>
+                <div class="metric-label">Health Check</div>
+            </div>
+        </div>
+
+        <div class="control-panel">
+            <h3><i class="fas fa-magic"></i> Traffic Prediction</h3>
+            <div id="alertContainer"></div>
+            <form id="predictionForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="sessionDuration">Session Duration (minutes)</label>
+                        <input type="number" id="sessionDuration" value="3.5" step="0.1" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="bounceRate">Bounce Rate (%)</label>
+                        <input type="number" id="bounceRate" value="45" step="0.1" min="0" max="100">
+                    </div>
+                    <div class="form-group">
+                        <label for="previousVisits">Previous Visits</label>
+                        <input type="number" id="previousVisits" value="5" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="conversionRate">Conversion Rate (%)</label>
+                        <input type="number" id="conversionRate" value="2.5" step="0.1" min="0" max="100">
+                    </div>
+                    <div class="form-group">
+                        <label for="trafficSource">Traffic Source</label>
+                        <select id="trafficSource">
+                            <option value="Organic">Organic</option>
+                            <option value="Paid">Paid</option>
+                            <option value="Referral">Referral</option>
+                            <option value="Social">Social</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="currentServers">Current Active Servers</label>
+                        <input type="number" id="currentServers" value="1" min="1">
+                    </div>
+                </div>
+                <button type="submit" class="btn">
+                    <span id="btnText">Predict Traffic & Auto-Scale</span>
+                    <span id="btnLoader" class="loading" style="display: none;"></span>
+                </button>
+            </form>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="card">
+                <h3><i class="fas fa-chart-area"></i> Traffic Forecast</h3>
+                <div class="chart-container">
+                    <canvas id="trafficChart"></canvas>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><i class="fas fa-coins"></i> Cost Analysis</h3>
+                <div class="chart-container">
+                    <canvas id="costChart"></canvas>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><i class="fas fa-server"></i> Server Count Forecast</h3>
+                <div class="chart-container">
+                    <canvas id="serverCountChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3><i class="fas fa-network-wired"></i> Server Fleet Status</h3>
+            <div class="server-list" id="serverList">
+                <p style="text-align: center; color: #666;">Make a prediction to see server status.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class CloudDashboard {
+            constructor() {
+                this.apiUrl = 'http://127.0.0.1:8000';
+                this.charts = {};
+                this.updateInterval = 30000; // 30 seconds for API health check
+                this.currentActiveServers = parseInt(document.getElementById('currentServers').value);
+
+                // Initialize historical data with plausible mock values
+                this.historicalLabels = ['-6h', '-5h', '-4h', '-3h', '-2h', '-1h', 'Now'];
+                this.historicalTraffic = [200, 220, 250, 230, 280, 260, 270]; // Page views
+                this.historicalCosts = [0.05, 0.055, 0.06, 0.058, 0.065, 0.062, 0.063]; // $/hour
+                this.historicalServers = [1, 1, 1, 1, 2, 2, 2]; // Number of servers
+
+                this.init();
+            }
+
+            init() {
+                this.setupEventListeners();
+                this.initCharts();
+                this.updateDashboardMetrics(); // Initial update of top metrics
+                this.checkApiHealth(); // Check API status on load
+                this.startPeriodicUpdates();
+            }
+
+            setupEventListeners() {
+                document.getElementById('predictionForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.makePrediction();
+                });
+            }
+
+            initCharts() {
+                // Traffic Chart
+                const trafficCtx = document.getElementById('trafficChart').getContext('2d');
+                this.charts.traffic = new Chart(trafficCtx, {
+                    type: 'line',
+                    data: {
+                        labels: this.historicalLabels.slice(), // Copy labels
+                        datasets: [
+                            {
+                                label: 'Historical Traffic (Page Views)',
+                                data: this.historicalTraffic.slice(),
+                                borderColor: '#667eea',
+                                backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                                fill: true,
+                                tension: 0.3,
+                                pointRadius: 3,
+                                pointHoverRadius: 5,
+                            },
+                            {
+                                label: 'Predicted Traffic',
+                                data: new Array(this.historicalLabels.length - 1).fill(null).concat([this.historicalTraffic[this.historicalTraffic.length - 1], null]), // Start from 'Now', null for actual future prediction
+                                borderColor: '#ef4444',
+                                backgroundColor: 'transparent',
+                                borderDash: [5, 5],
+                                fill: false,
+                                tension: 0.3,
+                                pointRadius: 0,
+                                pointHoverRadius: 0,
+                                hidden: false // This will be updated when prediction is made
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: true,
+                                labels: {
+                                    color: '#333'
+                                }
+                            },
+                            tooltip: {
+                                mode: 'index',
+                                intersect: false,
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: {
+                                    color: 'rgba(0, 0, 0, 0.05)'
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'Page Views'
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    color: 'rgba(0, 0, 0, 0.05)'
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'Time'
+                                }
+                            }
+                        }
+                    }
+                });
+
+                // Cost Chart
+                const costCtx = document.getElementById('costChart').getContext('2d');
+                this.charts.cost = new Chart(costCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: this.historicalLabels.slice(),
+                        datasets: [
+                            {
+                                label: 'Historical Cost ($/hour)',
+                                data: this.historicalCosts.slice(),
+                                backgroundColor: 'rgba(118, 75, 162, 0.8)',
+                                borderColor: '#764ba2',
+                                borderWidth: 1,
+                            },
+                            {
+                                label: 'Predicted Cost',
+                                data: new Array(this.historicalLabels.length - 1).fill(null).concat([this.historicalCosts[this.historicalCosts.length - 1], null]),
+                                backgroundColor: 'rgba(239, 68, 68, 0.7)',
+                                borderColor: '#ef4444',
+                                borderWidth: 1,
+                                hidden: false
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: true,
+                                labels: {
+                                    color: '#333'
+                                }
+                            },
+                            tooltip: {
+                                mode: 'index',
+                                intersect: false,
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: {
+                                    color: 'rgba(0, 0, 0, 0.05)'
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'Cost ($/hour)'
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    color: 'rgba(0, 0, 0, 0.05)'
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'Time'
+                                }
+                            }
+                        }
+                    }
+                });
+
+                // Server Count Chart
+                const serverCountCtx = document.getElementById('serverCountChart').getContext('2d');
+                this.charts.serverCount = new Chart(serverCountCtx, {
+                    type: 'line',
+                    data: {
+                        labels: this.historicalLabels.slice(),
+                        datasets: [
+                            {
+                                label: 'Historical Servers',
+                                data: this.historicalServers.slice(),
+                                borderColor: '#3b82f6',
+                                backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                                fill: true,
+                                tension: 0.3,
+                                pointStyle: 'rectRot', // Square points
+                                pointRadius: 4,
+                                pointHoverRadius: 6,
+                            },
+                            {
+                                label: 'Recommended Servers',
+                                data: new Array(this.historicalLabels.length - 1).fill(null).concat([this.historicalServers[this.historicalServers.length - 1], null]),
+                                borderColor: '#f59e0b',
+                                backgroundColor: 'transparent',
+                                borderDash: [5, 5],
+                                fill: false,
+                                tension: 0.3,
+                                pointStyle: 'circle',
+                                pointRadius: 0,
+                                pointHoverRadius: 0,
+                                hidden: false
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: true,
+                                labels: {
+                                    color: '#333'
+                                }
+                            },
+                            tooltip: {
+                                mode: 'index',
+                                intersect: false,
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed.y !== null) {
+                                            label += Math.round(context.parsed.y);
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                precision: 0, // Ensure integer scale for servers
+                                grid: {
+                                    color: 'rgba(0, 0, 0, 0.05)'
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'Number of Servers'
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    color: 'rgba(0, 0, 0, 0.05)'
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'Time'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Function to update the main dashboard metrics
+            updateDashboardMetrics(predictedTraffic = this.historicalTraffic[this.historicalTraffic.length - 1],
+                                   activeServers = this.historicalServers[this.historicalServers.length - 1],
+                                   currentCost = this.historicalCosts[this.historicalCosts.length - 1]) {
+
+                const currentTrafficEl = document.getElementById('currentTraffic');
+                const activeServersEl = document.getElementById('activeServers');
+                const currentCostEl = document.getElementById('currentCost');
+
+                // Apply highlight class for a brief animation
+                const applyHighlight = (element) => {
+                    element.classList.add('highlight');
+                    setTimeout(() => element.classList.remove('highlight'), 1000);
+                };
+
+                // Only update if value changed
+                if (parseFloat(currentTrafficEl.textContent) !== predictedTraffic.toFixed(1)) {
+                    currentTrafficEl.textContent = predictedTraffic.toFixed(1);
+                    applyHighlight(currentTrafficEl);
+                }
+                if (parseInt(activeServersEl.textContent) !== activeServers) {
+                    activeServersEl.textContent = activeServers;
+                    applyHighlight(activeServersEl);
+                }
+                if (parseFloat(currentCostEl.textContent) !== currentCost.toFixed(3)) {
+                    currentCostEl.textContent = `$${currentCost.toFixed(3)}`;
+                    applyHighlight(currentCostEl);
+                }
+            }
+
+
+            async checkApiHealth() {
+                try {
+                    const response = await fetch(`${this.apiUrl}/health`);
+                    const data = await response.json();
+
+                    const statusEl = document.getElementById('apiStatus');
+                    const statusTextEl = document.getElementById('apiStatusText');
+
+                    if (data.status === 'healthy') {
+                        statusEl.className = 'status-indicator status-healthy';
+                        statusTextEl.textContent = 'Online';
+                    } else {
+                        statusEl.className = 'status-indicator status-warning';
+                        statusTextEl.textContent = 'Issues';
+                    }
+                } catch (error) {
+                    const statusEl = document.getElementById('apiStatus');
+                    const statusTextEl = document.getElementById('apiStatusText');
+                    statusEl.className = 'status-indicator status-critical';
+                    statusTextEl.textContent = 'Offline';
+                }
+            }
+
+            startPeriodicUpdates() {
+                setInterval(() => {
+                    this.checkApiHealth();
+                    // In a real-time system, you'd fetch live data here to update charts periodically
+                    // For now, charts only update on prediction or initial load.
+                }, this.updateInterval);
+            }
+
+
+            async makePrediction() {
+                const btnText = document.getElementById('btnText');
+                const btnLoader = document.getElementById('btnLoader');
+                const alertContainer = document.getElementById('alertContainer');
+
+                btnText.style.display = 'none';
+                btnLoader.style.display = 'inline-block';
+                alertContainer.innerHTML = ''; // Clear previous alerts/results
+
+                try {
+                    const currentServersInput = document.getElementById('currentServers');
+                    this.currentActiveServers = parseInt(currentServersInput.value);
+
+                    const formData = {
+                        session_duration: parseFloat(document.getElementById('sessionDuration').value),
+                        bounce_rate: parseFloat(document.getElementById('bounceRate').value) / 100,
+                        previous_visits: parseInt(document.getElementById('previousVisits').value),
+                        conversion_rate: parseFloat(document.getElementById('conversionRate').value) / 100,
+                        traffic_source: document.getElementById('trafficSource').value,
+                        current_servers: this.currentActiveServers
+                    };
+
+                    const response = await fetch(`${this.apiUrl}/predict`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formData)
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok) {
+                        // Update the internal currentActiveServers based on the API's recommendation
+                        this.currentActiveServers = result.recommended_servers;
+                        // Do NOT update currentServersInput.value here directly.
+                        // It will be updated as part of the simulation for visual effect.
+
+                        // Show detailed prediction results section
+                        this.showDetailedPredictionResults(result, formData);
+
+                        // Update dashboard metrics with new prediction values
+                        this.updateDashboardMetrics(result.predicted_traffic, result.recommended_servers, result.estimated_cost_per_hour);
+
+                        // Update all charts with the new prediction
+                        this.updateChartsWithPrediction(result);
+
+                        // Simulate auto-scaling process (and update currentServersInput.value inside it)
+                        this.simulateAutoScaling(result);
+
+                        // Update server fleet status based on recommendation
+                        this.updateServerList(result.recommended_servers, result.server_type);
+
+                    } else {
+                        this.showAlert('error', `<i class="fas fa-exclamation-circle"></i> Prediction failed: ${result.detail || 'Unknown error'}`);
+                    }
+                } catch (error) {
+                    this.showAlert('error', `<i class="fas fa-exclamation-triangle"></i> Connection error: ${error.message}`);
+                } finally {
+                    btnText.style.display = 'inline';
+                    btnLoader.style.display = 'none';
+                }
+            }
+
+            showDetailedPredictionResults(result, formData) {
+                const alertContainer = document.getElementById('alertContainer');
+
+                const predictionDiv = document.createElement('div');
+                predictionDiv.className = 'prediction-results';
+
+                // Calculate additional metrics (using historical 'Now' cost as a baseline for savings)
+                const baselineCost = this.historicalCosts[this.historicalCosts.length - 1];
+                // Ensure savings are not negative
+                const costSavings = Math.max(0, (baselineCost - result.estimated_cost_per_hour) * 24 * 30);
+
+                // Simple efficiency calculation: traffic per server. Adjust logic as needed.
+                // Assuming a higher value is better efficiency
+                const efficiency = (result.predicted_traffic / result.recommended_servers) * 10; // Multiplier for better scale
+
+                predictionDiv.innerHTML = `
+                    <div class="prediction-title">
+                        <i class="fas fa-bullseye"></i> AI Prediction Results
+                        <span style="font-size: 0.8rem; opacity: 0.8; margin-left: auto;">${new Date().toLocaleTimeString()}</span>
+                    </div>
+
+                    <div class="prediction-details">
+                        <div class="prediction-item">
+                            <div class="prediction-value"><i class="fas fa-eye"></i> ${result.predicted_traffic.toFixed(1)}</div>
+                            <div class="prediction-label">Page Views/Hour</div>
+                        </div>
+                        <div class="prediction-item">
+                            <div class="prediction-value"><i class="fas fa-server"></i> ${result.recommended_servers}</div>
+                            <div class="prediction-label">${result.server_type} Servers</div>
+                        </div>
+                        <div class="prediction-item">
+                            <div class="prediction-value"><i class="fas fa-dollar-sign"></i> ${result.estimated_cost_per_hour.toFixed(3)}</div>
+                            <div class="prediction-label">Cost/Hour</div>
+                        </div>
+                        <div class="prediction-item">
+                            <div class="prediction-value"><i class="fas fa-piggy-bank"></i> $${costSavings.toFixed(0)}</div>
+                            <div class="prediction-label">Est. Monthly Savings</div>
+                        </div>
+                        <div class="prediction-item">
+                            <div class="prediction-value"><i class="fas fa-tachometer-alt"></i> ${efficiency.toFixed(1)}%</div>
+                            <div class="prediction-label">Resource Efficiency</div>
+                        </div>
+                        <div class="prediction-item">
+                            <div class="prediction-value"><i class="fas fa-globe"></i> ${formData.traffic_source}</div>
+                            <div class="prediction-label">Traffic Source</div>
+                        </div>
+                    </div>
+
+                    <div class="scaling-simulation">
+                        <div class="scaling-title"><i class="fas fa-sync-alt"></i> Auto-Scaling Simulation</div>
+                        <div class="scaling-progress">
+                            <div class="progress-bar" id="scalingProgress">Initializing...</div>
+                        </div>
+                        <div class="simulation-log" id="simulationLog"></div>
+                    </div>
+                `;
+
+                alertContainer.appendChild(predictionDiv);
+            }
+
+            simulateAutoScaling(result) {
+                const progressBar = document.getElementById('scalingProgress');
+                const simulationLog = document.getElementById('simulationLog');
+                const currentServersInput = document.getElementById('currentServers');
+                const activeServersMetric = document.getElementById('activeServers');
+
+                simulationLog.innerHTML = ''; // Clear previous simulation logs
+                progressBar.style.width = '0%';
+                progressBar.textContent = 'Initializing...';
+                progressBar.style.backgroundColor = 'linear-gradient(90deg, #10b981, #34d399)';
+
+
+                const initialServers = parseInt(currentServersInput.value);
+                const targetServers = result.recommended_servers;
+                const diff = targetServers - initialServers;
+                const action = diff > 0 ? 'Scaling Up' : (diff < 0 ? 'Scaling Down' : 'No Change');
+
+                let currentServersSim = initialServers;
+                const intervalTime = 500; // ms per step
+
+                const steps = [
+                    { progress: 10, text: `[START] Preparing for auto-scaling (${action})...`, type: 'info', icon: 'fas fa-cogs' },
+                    { progress: 25, text: `Analyzing current resource utilization...`, type: 'info', icon: 'fas fa-chart-pie' },
+                ];
+
+                if (diff !== 0) {
+                     steps.push({ progress: 40, text: `Calculating optimal server instances: ${targetServers} needed.`, type: 'info', icon: 'fas fa-calculator' });
+
+                    const numSteps = Math.abs(diff);
+                    for (let i = 1; i <= numSteps; i++) {
+                        const stepServers = initialServers + (diff > 0 ? i : -i);
+                        const progressPercentage = 40 + (i / numSteps) * 40; // 40% to 80% for scaling steps
+                        steps.push({
+                            progress: progressPercentage,
+                            text: `Adjusting server count to ${stepServers}...`,
+                            type: 'info',
+                            icon: diff > 0 ? 'fas fa-arrow-up' : 'fas fa-arrow-down',
+                            updateValue: stepServers
+                        });
+                    }
+                } else {
+                    steps.push({ progress: 40, text: `Current server count (${initialServers}) is optimal.`, type: 'info', icon: 'fas fa-check-circle' });
+                }
+
+                steps.push(
+                    { progress: 85, text: `Performing health checks on all instances...`, type: 'warning', icon: 'fas fa-heartbeat' },
+                    { progress: 100, text: `[COMPLETE] Auto-scaling finished. System fully operational.`, type: 'success', icon: 'fas fa-check-double' }
+                );
+
+                let currentStepIndex = 0;
+
+                const simulateStep = () => {
+                    if (currentStepIndex < steps.length) {
+                        const step = steps[currentStepIndex];
+
+                        // Update progress bar
+                        progressBar.style.width = `${step.progress}%`;
+                        progressBar.textContent = `${Math.round(step.progress)}%`;
+                        if (step.type === 'success') {
+                             progressBar.style.background = 'linear-gradient(90deg, #10b981, #34d399)';
+                        } else if (step.type === 'error') {
+                            progressBar.style.background = 'linear-gradient(90deg, #ef4444, #dc2626)';
+                        }
+
+
+                        // Add log entry
+                        const logEntry = document.createElement('div');
+                        logEntry.className = `log-entry ${step.type}`;
+                        logEntry.innerHTML = `<i class="${step.icon}"></i> <span>${new Date().toLocaleTimeString()} ${step.text}</span>`;
+                        simulationLog.appendChild(logEntry);
+
+                        // Auto-scroll to bottom
+                        simulationLog.scrollTop = simulationLog.scrollHeight;
+
+                        // Update current servers metric and input field during scaling steps
+                        if (step.updateValue !== undefined) {
+                            currentServersInput.value = step.updateValue;
+                            activeServersMetric.textContent = step.updateValue;
+                            activeServersMetric.classList.add('highlight'); // Animate metric
+                            setTimeout(() => activeServersMetric.classList.remove('highlight'), 500);
+                        }
+
+
+                        currentStepIndex++;
+
+                        setTimeout(simulateStep, intervalTime + Math.random() * 200);
+                    }
+                };
+
+                // Start simulation after a short delay
+                setTimeout(simulateStep, 500);
+            }
+
+            updateChartsWithPrediction(result) {
+                const trafficChart = this.charts.traffic;
+                const costChart = this.charts.cost;
+                const serverCountChart = this.charts.serverCount;
+
+                // --- Traffic Chart ---
+                // Update the predicted data line for Traffic
+                const predictedTrafficData = new Array(trafficChart.data.labels.length - 1).fill(null);
+                predictedTrafficData.push(this.historicalTraffic[this.historicalTraffic.length - 1]); // 'Now' point
+                predictedTrafficData.push(result.predicted_traffic); // The actual prediction
+
+                trafficChart.data.datasets[1].data = predictedTrafficData;
+                if (!trafficChart.data.labels.includes('Predicted')) {
+                     trafficChart.data.labels.push('Predicted');
+                }
+
+                // --- Cost Chart ---
+                // Update the predicted data bar for Cost
+                const predictedCostData = new Array(costChart.data.labels.length - 1).fill(null);
+                predictedCostData.push(this.historicalCosts[this.historicalCosts.length - 1]); // 'Now' point
+                predictedCostData.push(result.estimated_cost_per_hour); // The actual prediction
+
+                costChart.data.datasets[1].data = predictedCostData;
+                 if (!costChart.data.labels.includes('Predicted')) {
+                     costChart.data.labels.push('Predicted');
+                }
+
+                // --- Server Count Chart ---
+                // Update the predicted data line for Server Count
+                const predictedServersData = new Array(serverCountChart.data.labels.length - 1).fill(null);
+                predictedServersData.push(this.historicalServers[this.historicalServers.length - 1]); // 'Now' point
+                predictedServersData.push(result.recommended_servers); // The actual prediction
+
+                serverCountChart.data.datasets[1].data = predictedServersData;
+                 if (!serverCountChart.data.labels.includes('Predicted')) {
+                     serverCountChart.data.labels.push('Predicted');
+                }
+
+
+                // Update all charts
+                trafficChart.update();
+                costChart.update();
+                serverCountChart.update();
+            }
+
+            updateServerList(recommended_servers, server_type) {
+                const serverListEl = document.getElementById('serverList');
+                serverListEl.innerHTML = ''; // Clear existing list
+
+                if (recommended_servers === 0) {
+                    serverListEl.innerHTML = '<p style="text-align: center; color: #666;">No servers are currently recommended or active.</p>';
+                    return;
+                }
+
+                for (let i = 1; i <= recommended_servers; i++) {
+                    const serverItem = document.createElement('div');
+                    serverItem.className = 'server-item';
+                    serverItem.style.animationDelay = `${i * 0.05}s`; // Staggered animation
+
+                    const status = (i <= this.historicalServers[this.historicalServers.length - 1]) ? 'healthy' : 'healthy'; // Assuming newly provisioned are healthy
+                    const serverName = `${server_type}-server-${i}`;
+                    const costPerHour = (server_type === 't3.small' ? 0.023 : (server_type === 't3.medium' ? 0.042 : 0.084)); // Mock costs
+
+                    serverItem.innerHTML = `
+                        <div class="server-info">
+                            <i class="fas fa-server server-icon"></i>
+                            <div class="server-details">
+                                <span class="server-name">${serverName}</span>
+                                <span class="server-type">${server_type}</span>
+                            </div>
+                        </div>
+                        <div class="server-cost">$${costPerHour.toFixed(3)}/hour</div>
+                    `;
+                    serverListEl.appendChild(serverItem);
+                }
+            }
+
+            showAlert(type, message) {
+                const alertContainer = document.getElementById('alertContainer');
+                const alertDiv = document.createElement('div');
+                alertDiv.className = `alert alert-${type}`;
+                alertDiv.innerHTML = message;
+                alertContainer.appendChild(alertDiv);
+
+                // Auto-hide alert after some time
+                setTimeout(() => {
+                    alertDiv.style.opacity = 0;
+                    alertDiv.style.transition = 'opacity 0.5s ease-out';
+                    setTimeout(() => alertDiv.remove(), 500);
+                }, 5000);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            new CloudDashboard();
+        });
+    </script>
+</body>
+</html>

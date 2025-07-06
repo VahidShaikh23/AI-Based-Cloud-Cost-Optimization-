@@ -1,0 +1,520 @@
+2025-07-04 12:57:49,359 - INFO - 🚀 STARTING TRAFFIC FORECASTING PROJECT PIPELINE
+2025-07-04 12:57:49,359 - INFO - ============================================================
+2025-07-04 12:57:49,359 - INFO - Data file validated: /Users/vahid/Desktop/website_wata.csv
+2025-07-04 12:57:49,359 - INFO - ==================================================
+2025-07-04 12:57:49,359 - INFO - STEP 1: RUNNING DATA ANALYSIS PIPELINE
+2025-07-04 12:57:49,359 - INFO - ==================================================
+2025-07-04 12:57:49,920 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 12:57:49,922 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 12:57:50,137 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 12:57:50,140 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 12:57:51,196 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 12:57:51,198 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 12:57:51,787 - INFO - ✅ Data analysis completed successfully
+2025-07-04 12:57:51,787 - INFO - ==================================================
+2025-07-04 12:57:51,787 - INFO - STEP 2: RUNNING MODEL TRAINING PIPELINE
+2025-07-04 12:57:51,787 - INFO - ==================================================
+2025-07-04 12:58:00,095 - INFO - ✅ Model training completed successfully
+2025-07-04 12:58:00,095 - INFO - ==================================================
+2025-07-04 12:58:00,095 - INFO - GENERATING FINAL PROJECT REPORT
+2025-07-04 12:58:00,095 - INFO - ==================================================
+2025-07-04 12:58:00,096 - INFO - 📊 Final report generated: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250704_125800.txt
+2025-07-04 12:58:00,096 - INFO - ============================================================
+2025-07-04 12:58:00,096 - INFO - 🎉 PIPELINE COMPLETED SUCCESSFULLY!
+2025-07-04 12:58:00,096 - INFO - ⏱️  Total execution time: 0:00:10.736895
+2025-07-04 12:58:00,096 - INFO - 📊 Final report: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250704_125800.txt
+2025-07-04 12:58:00,096 - INFO - ============================================================
+2025-07-04 13:02:43,789 - INFO - 🚀 STARTING TRAFFIC FORECASTING PROJECT PIPELINE
+2025-07-04 13:02:43,789 - INFO - ============================================================
+2025-07-04 13:02:43,789 - INFO - Data file validated: /Users/vahid/Desktop/website_wata.csv
+2025-07-04 13:02:43,789 - INFO - ==================================================
+2025-07-04 13:02:43,789 - INFO - STEP 1: RUNNING DATA ANALYSIS PIPELINE
+2025-07-04 13:02:43,789 - INFO - ==================================================
+2025-07-04 13:02:44,376 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 13:02:44,379 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 13:02:44,597 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 13:02:44,600 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 13:02:45,656 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 13:02:45,658 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 13:02:46,239 - INFO - ✅ Data analysis completed successfully
+2025-07-04 13:02:46,239 - INFO - ==================================================
+2025-07-04 13:02:46,239 - INFO - STEP 2: RUNNING MODEL TRAINING PIPELINE
+2025-07-04 13:02:46,239 - INFO - ==================================================
+2025-07-04 13:02:54,448 - INFO - ✅ Model training completed successfully
+2025-07-04 13:02:54,449 - INFO - ==================================================
+2025-07-04 13:02:54,449 - INFO - GENERATING FINAL PROJECT REPORT
+2025-07-04 13:02:54,449 - INFO - ==================================================
+2025-07-04 13:02:54,449 - INFO - 📊 Final report generated: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250704_130254.txt
+2025-07-04 13:02:54,449 - INFO - ============================================================
+2025-07-04 13:02:54,449 - INFO - 🎉 PIPELINE COMPLETED SUCCESSFULLY!
+2025-07-04 13:02:54,449 - INFO - ⏱️  Total execution time: 0:00:10.660058
+2025-07-04 13:02:54,449 - INFO - 📊 Final report: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250704_130254.txt
+2025-07-04 13:02:54,449 - INFO - ============================================================
+2025-07-04 13:13:41,373 - INFO - 🚀 STARTING TRAFFIC FORECASTING PROJECT PIPELINE
+2025-07-04 13:13:41,373 - INFO - ============================================================
+2025-07-04 13:13:41,373 - INFO - Data file validated: /Users/vahid/Desktop/website_wata.csv
+2025-07-04 13:13:41,373 - INFO - ==================================================
+2025-07-04 13:13:41,373 - INFO - STEP 1: RUNNING DATA ANALYSIS PIPELINE
+2025-07-04 13:13:41,373 - INFO - ==================================================
+2025-07-04 13:13:41,974 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 13:13:41,977 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 13:13:42,192 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 13:13:42,196 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 13:13:43,283 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 13:13:43,286 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 13:13:43,860 - INFO - ✅ Data analysis completed successfully
+2025-07-04 13:13:43,860 - INFO - ==================================================
+2025-07-04 13:13:43,860 - INFO - STEP 2: RUNNING MODEL TRAINING PIPELINE
+2025-07-04 13:13:43,860 - INFO - ==================================================
+2025-07-04 13:13:51,917 - INFO - ✅ Model training completed successfully
+2025-07-04 13:13:51,917 - INFO - ==================================================
+2025-07-04 13:13:51,917 - INFO - GENERATING FINAL PROJECT REPORT
+2025-07-04 13:13:51,917 - INFO - ==================================================
+2025-07-04 13:13:51,917 - INFO - 📊 Final report generated: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250704_131351.txt
+2025-07-04 13:13:51,917 - INFO - ============================================================
+2025-07-04 13:13:51,917 - INFO - 🎉 PIPELINE COMPLETED SUCCESSFULLY!
+2025-07-04 13:13:51,917 - INFO - ⏱️  Total execution time: 0:00:10.544243
+2025-07-04 13:13:51,917 - INFO - 📊 Final report: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250704_131351.txt
+2025-07-04 13:13:51,917 - INFO - ============================================================
+2025-07-04 13:15:27,101 - INFO - 🚀 STARTING TRAFFIC FORECASTING PROJECT PIPELINE
+2025-07-04 13:15:27,102 - INFO - ============================================================
+2025-07-04 13:15:27,102 - INFO - Data file validated: /Users/vahid/Desktop/website_wata.csv
+2025-07-04 13:15:27,102 - INFO - ==================================================
+2025-07-04 13:15:27,102 - INFO - STEP 1: RUNNING DATA ANALYSIS PIPELINE
+2025-07-04 13:15:27,102 - INFO - ==================================================
+2025-07-04 13:15:27,674 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 13:15:27,677 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 13:15:27,891 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 13:15:27,895 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 13:15:28,981 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 13:15:28,983 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 13:15:29,566 - INFO - ✅ Data analysis completed successfully
+2025-07-04 13:15:29,566 - INFO - ==================================================
+2025-07-04 13:15:29,566 - INFO - STEP 2: RUNNING MODEL TRAINING PIPELINE
+2025-07-04 13:15:29,566 - INFO - ==================================================
+2025-07-04 13:15:37,641 - INFO - ✅ Model training completed successfully
+2025-07-04 13:15:37,642 - INFO - ==================================================
+2025-07-04 13:15:37,642 - INFO - GENERATING FINAL PROJECT REPORT
+2025-07-04 13:15:37,642 - INFO - ==================================================
+2025-07-04 13:15:37,642 - INFO - 📊 Final report generated: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250704_131537.txt
+2025-07-04 13:15:37,642 - INFO - ============================================================
+2025-07-04 13:15:37,642 - INFO - 🎉 PIPELINE COMPLETED SUCCESSFULLY!
+2025-07-04 13:15:37,642 - INFO - ⏱️  Total execution time: 0:00:10.540406
+2025-07-04 13:15:37,642 - INFO - 📊 Final report: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250704_131537.txt
+2025-07-04 13:15:37,642 - INFO - ============================================================
+2025-07-04 13:24:57,831 - INFO - 🚀 STARTING TRAFFIC FORECASTING PROJECT PIPELINE
+2025-07-04 13:24:57,831 - INFO - ============================================================
+2025-07-04 13:24:57,831 - INFO - Data file validated: /Users/vahid/Desktop/website_wata.csv
+2025-07-04 13:24:57,831 - INFO - ==================================================
+2025-07-04 13:24:57,831 - INFO - STEP 1: RUNNING DATA ANALYSIS PIPELINE
+2025-07-04 13:24:57,831 - INFO - ==================================================
+2025-07-04 13:24:58,398 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 13:24:58,401 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 13:24:58,621 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 13:24:58,624 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 13:24:59,713 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 13:24:59,715 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 13:25:00,286 - INFO - ✅ Data analysis completed successfully
+2025-07-04 13:25:00,287 - INFO - ==================================================
+2025-07-04 13:25:00,287 - INFO - STEP 2: RUNNING MODEL TRAINING PIPELINE
+2025-07-04 13:25:00,287 - INFO - ==================================================
+2025-07-04 13:25:08,499 - INFO - ✅ Model training completed successfully
+2025-07-04 13:25:08,499 - INFO - ==================================================
+2025-07-04 13:25:08,499 - INFO - GENERATING FINAL PROJECT REPORT
+2025-07-04 13:25:08,499 - INFO - ==================================================
+2025-07-04 13:25:08,500 - INFO - 📊 Final report generated: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250704_132508.txt
+2025-07-04 13:25:08,500 - INFO - ============================================================
+2025-07-04 13:25:08,500 - INFO - 🎉 PIPELINE COMPLETED SUCCESSFULLY!
+2025-07-04 13:25:08,500 - INFO - ⏱️  Total execution time: 0:00:10.668428
+2025-07-04 13:25:08,500 - INFO - 📊 Final report: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250704_132508.txt
+2025-07-04 13:25:08,500 - INFO - ============================================================
+2025-07-04 15:01:16,434 - INFO - 🚀 STARTING TRAFFIC FORECASTING PROJECT PIPELINE
+2025-07-04 15:01:16,434 - INFO - ============================================================
+2025-07-04 15:01:16,434 - INFO - Data file validated: /Users/vahid/Desktop/website_wata.csv
+2025-07-04 15:01:16,434 - INFO - ==================================================
+2025-07-04 15:01:16,434 - INFO - STEP 1: RUNNING DATA ANALYSIS PIPELINE
+2025-07-04 15:01:16,434 - INFO - ==================================================
+2025-07-04 15:01:17,089 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:01:17,093 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:01:17,308 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:01:17,311 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:01:18,386 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:01:18,389 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:01:18,976 - INFO - ✅ Data analysis completed successfully
+2025-07-04 15:01:18,977 - INFO - ==================================================
+2025-07-04 15:01:18,977 - INFO - STEP 2: RUNNING MODEL TRAINING PIPELINE
+2025-07-04 15:01:18,977 - INFO - ==================================================
+2025-07-04 15:01:27,156 - INFO - ✅ Model training completed successfully
+2025-07-04 15:01:27,156 - INFO - ==================================================
+2025-07-04 15:01:27,156 - INFO - GENERATING FINAL PROJECT REPORT
+2025-07-04 15:01:27,156 - INFO - ==================================================
+2025-07-04 15:01:27,157 - INFO - 📊 Final report generated: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250704_150127.txt
+2025-07-04 15:01:27,157 - INFO - ============================================================
+2025-07-04 15:01:27,157 - INFO - 🎉 PIPELINE COMPLETED SUCCESSFULLY!
+2025-07-04 15:01:27,157 - INFO - ⏱️  Total execution time: 0:00:10.722428
+2025-07-04 15:01:27,157 - INFO - 📊 Final report: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250704_150127.txt
+2025-07-04 15:01:27,157 - INFO - ============================================================
+2025-07-04 15:25:25,417 - INFO - 🚀 STARTING TRAFFIC FORECASTING PROJECT PIPELINE
+2025-07-04 15:25:25,418 - INFO - ============================================================
+2025-07-04 15:25:25,418 - INFO - Data file validated: /Users/vahid/Desktop/website_wata.csv
+2025-07-04 15:25:25,418 - INFO - ==================================================
+2025-07-04 15:25:25,418 - INFO - STEP 1: RUNNING DATA ANALYSIS PIPELINE
+2025-07-04 15:25:25,418 - INFO - ==================================================
+2025-07-04 15:25:26,028 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:25:26,031 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:25:26,248 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:25:26,251 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:25:27,324 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:25:27,326 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:25:27,903 - INFO - ✅ Data analysis completed successfully
+2025-07-04 15:25:27,903 - INFO - ==================================================
+2025-07-04 15:25:27,903 - INFO - STEP 2: RUNNING MODEL TRAINING PIPELINE
+2025-07-04 15:25:27,903 - INFO - ==================================================
+2025-07-04 15:25:35,940 - INFO - ✅ Model training completed successfully
+2025-07-04 15:25:35,940 - INFO - ==================================================
+2025-07-04 15:25:35,940 - INFO - GENERATING FINAL PROJECT REPORT
+2025-07-04 15:25:35,940 - INFO - ==================================================
+2025-07-04 15:25:35,940 - INFO - 📊 Final report generated: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250704_152535.txt
+2025-07-04 15:25:35,940 - INFO - ============================================================
+2025-07-04 15:25:35,940 - INFO - 🎉 PIPELINE COMPLETED SUCCESSFULLY!
+2025-07-04 15:25:35,940 - INFO - ⏱️  Total execution time: 0:00:10.522768
+2025-07-04 15:25:35,940 - INFO - 📊 Final report: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250704_152535.txt
+2025-07-04 15:25:35,940 - INFO - ============================================================
+2025-07-04 15:27:17,363 - INFO - 🚀 STARTING TRAFFIC FORECASTING PROJECT PIPELINE
+2025-07-04 15:27:17,364 - INFO - ============================================================
+2025-07-04 15:27:17,364 - INFO - Data file validated: /Users/vahid/Desktop/website_wata.csv
+2025-07-04 15:27:17,364 - INFO - ==================================================
+2025-07-04 15:27:17,364 - INFO - STEP 1: RUNNING DATA ANALYSIS PIPELINE
+2025-07-04 15:27:17,364 - INFO - ==================================================
+2025-07-04 15:27:17,947 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:27:17,950 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:27:18,166 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:27:18,169 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:27:19,246 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:27:19,249 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:27:19,818 - INFO - ✅ Data analysis completed successfully
+2025-07-04 15:27:19,818 - INFO - ==================================================
+2025-07-04 15:27:19,818 - INFO - STEP 2: RUNNING MODEL TRAINING PIPELINE
+2025-07-04 15:27:19,818 - INFO - ==================================================
+2025-07-04 15:27:28,261 - INFO - ✅ Model training completed successfully
+2025-07-04 15:27:28,261 - INFO - ==================================================
+2025-07-04 15:27:28,261 - INFO - GENERATING FINAL PROJECT REPORT
+2025-07-04 15:27:28,261 - INFO - ==================================================
+2025-07-04 15:27:28,261 - INFO - 📊 Final report generated: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250704_152728.txt
+2025-07-04 15:27:28,261 - INFO - ============================================================
+2025-07-04 15:27:28,261 - INFO - 🎉 PIPELINE COMPLETED SUCCESSFULLY!
+2025-07-04 15:27:28,261 - INFO - ⏱️  Total execution time: 0:00:10.897102
+2025-07-04 15:27:28,261 - INFO - 📊 Final report: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250704_152728.txt
+2025-07-04 15:27:28,261 - INFO - ============================================================
+2025-07-04 15:31:56,746 - INFO - 🚀 STARTING TRAFFIC FORECASTING PROJECT PIPELINE
+2025-07-04 15:31:56,746 - INFO - ============================================================
+2025-07-04 15:31:56,746 - INFO - Data file validated: /Users/vahid/Desktop/website_wata.csv
+2025-07-04 15:31:56,746 - INFO - ==================================================
+2025-07-04 15:31:56,746 - INFO - STEP 1: RUNNING DATA ANALYSIS PIPELINE
+2025-07-04 15:31:56,746 - INFO - ==================================================
+2025-07-04 15:31:57,317 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:31:57,320 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:31:57,532 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:31:57,535 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:31:58,609 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:31:58,612 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:31:59,196 - INFO - ✅ Data analysis completed successfully
+2025-07-04 15:31:59,196 - INFO - ==================================================
+2025-07-04 15:31:59,196 - INFO - STEP 2: RUNNING MODEL TRAINING PIPELINE
+2025-07-04 15:31:59,196 - INFO - ==================================================
+2025-07-04 15:32:07,251 - INFO - ✅ Model training completed successfully
+2025-07-04 15:32:07,252 - INFO - ==================================================
+2025-07-04 15:32:07,252 - INFO - GENERATING FINAL PROJECT REPORT
+2025-07-04 15:32:07,252 - INFO - ==================================================
+2025-07-04 15:32:07,252 - INFO - 📊 Final report generated: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250704_153207.txt
+2025-07-04 15:32:07,252 - INFO - ============================================================
+2025-07-04 15:32:07,252 - INFO - 🎉 PIPELINE COMPLETED SUCCESSFULLY!
+2025-07-04 15:32:07,252 - INFO - ⏱️  Total execution time: 0:00:10.506142
+2025-07-04 15:32:07,252 - INFO - 📊 Final report: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250704_153207.txt
+2025-07-04 15:32:07,252 - INFO - ============================================================
+2025-07-04 15:32:48,092 - INFO - 🚀 STARTING TRAFFIC FORECASTING PROJECT PIPELINE
+2025-07-04 15:32:48,093 - INFO - ============================================================
+2025-07-04 15:32:48,093 - INFO - Data file validated: /Users/vahid/Desktop/website_wata.csv
+2025-07-04 15:32:48,093 - INFO - ==================================================
+2025-07-04 15:32:48,093 - INFO - STEP 1: RUNNING DATA ANALYSIS PIPELINE
+2025-07-04 15:32:48,093 - INFO - ==================================================
+2025-07-04 15:32:48,632 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:32:48,635 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:32:48,845 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:32:48,848 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:32:49,906 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:32:49,908 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:32:50,474 - INFO - ✅ Data analysis completed successfully
+2025-07-04 15:32:50,474 - INFO - ==================================================
+2025-07-04 15:32:50,474 - INFO - STEP 2: RUNNING MODEL TRAINING PIPELINE
+2025-07-04 15:32:50,474 - INFO - ==================================================
+2025-07-04 15:32:58,416 - INFO - ✅ Model training completed successfully
+2025-07-04 15:32:58,417 - INFO - ==================================================
+2025-07-04 15:32:58,417 - INFO - GENERATING FINAL PROJECT REPORT
+2025-07-04 15:32:58,417 - INFO - ==================================================
+2025-07-04 15:32:58,417 - INFO - 📊 Final report generated: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250704_153258.txt
+2025-07-04 15:32:58,417 - INFO - ============================================================
+2025-07-04 15:32:58,417 - INFO - 🎉 PIPELINE COMPLETED SUCCESSFULLY!
+2025-07-04 15:32:58,417 - INFO - ⏱️  Total execution time: 0:00:10.323944
+2025-07-04 15:32:58,417 - INFO - 📊 Final report: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250704_153258.txt
+2025-07-04 15:32:58,417 - INFO - ============================================================
+2025-07-04 15:44:54,906 - INFO - 🚀 STARTING TRAFFIC FORECASTING PROJECT PIPELINE
+2025-07-04 15:44:54,907 - INFO - ============================================================
+2025-07-04 15:44:54,907 - INFO - Data file validated: /Users/vahid/Desktop/website_wata.csv
+2025-07-04 15:44:54,907 - INFO - ==================================================
+2025-07-04 15:44:54,907 - INFO - STEP 1: RUNNING DATA ANALYSIS PIPELINE
+2025-07-04 15:44:54,907 - INFO - ==================================================
+2025-07-04 15:44:55,489 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:44:55,492 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:44:55,704 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:44:55,707 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:44:56,803 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:44:56,806 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:44:57,380 - INFO - ✅ Data analysis completed successfully
+2025-07-04 15:44:57,380 - INFO - ==================================================
+2025-07-04 15:44:57,380 - INFO - STEP 2: RUNNING MODEL TRAINING PIPELINE
+2025-07-04 15:44:57,380 - INFO - ==================================================
+2025-07-04 15:45:05,816 - INFO - ✅ Model training completed successfully
+2025-07-04 15:45:05,817 - INFO - ==================================================
+2025-07-04 15:45:05,817 - INFO - GENERATING FINAL PROJECT REPORT
+2025-07-04 15:45:05,817 - INFO - ==================================================
+2025-07-04 15:45:05,817 - INFO - 📊 Final report generated: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250704_154505.txt
+2025-07-04 15:45:05,817 - INFO - ============================================================
+2025-07-04 15:45:05,817 - INFO - 🎉 PIPELINE COMPLETED SUCCESSFULLY!
+2025-07-04 15:45:05,817 - INFO - ⏱️  Total execution time: 0:00:10.910335
+2025-07-04 15:45:05,817 - INFO - 📊 Final report: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250704_154505.txt
+2025-07-04 15:45:05,817 - INFO - ============================================================
+2025-07-04 15:54:48,304 - INFO - 🚀 STARTING TRAFFIC FORECASTING PROJECT PIPELINE
+2025-07-04 15:54:48,304 - INFO - ============================================================
+2025-07-04 15:54:48,304 - INFO - Data file validated: /Users/vahid/Desktop/website_wata.csv
+2025-07-04 15:54:48,304 - INFO - ==================================================
+2025-07-04 15:54:48,304 - INFO - STEP 1: RUNNING DATA ANALYSIS PIPELINE
+2025-07-04 15:54:48,304 - INFO - ==================================================
+2025-07-04 15:54:48,886 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:54:48,889 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:54:49,104 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:54:49,108 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:54:50,193 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:54:50,195 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:54:50,795 - INFO - ✅ Data analysis completed successfully
+2025-07-04 15:54:50,795 - INFO - ==================================================
+2025-07-04 15:54:50,795 - INFO - STEP 2: RUNNING MODEL TRAINING PIPELINE
+2025-07-04 15:54:50,795 - INFO - ==================================================
+2025-07-04 15:54:58,969 - INFO - ✅ Model training completed successfully
+2025-07-04 15:54:58,969 - INFO - ==================================================
+2025-07-04 15:54:58,969 - INFO - GENERATING FINAL PROJECT REPORT
+2025-07-04 15:54:58,969 - INFO - ==================================================
+2025-07-04 15:54:58,969 - INFO - 📊 Final report generated: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250704_155458.txt
+2025-07-04 15:54:58,969 - INFO - ============================================================
+2025-07-04 15:54:58,969 - INFO - 🎉 PIPELINE COMPLETED SUCCESSFULLY!
+2025-07-04 15:54:58,969 - INFO - ⏱️  Total execution time: 0:00:10.665079
+2025-07-04 15:54:58,969 - INFO - 📊 Final report: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250704_155458.txt
+2025-07-04 15:54:58,969 - INFO - ============================================================
+2025-07-04 15:57:19,919 - INFO - 🚀 STARTING TRAFFIC FORECASTING PROJECT PIPELINE
+2025-07-04 15:57:19,919 - INFO - ============================================================
+2025-07-04 15:57:19,919 - INFO - Data file validated: /Users/vahid/Desktop/website_wata.csv
+2025-07-04 15:57:19,919 - INFO - ==================================================
+2025-07-04 15:57:19,919 - INFO - STEP 1: RUNNING DATA ANALYSIS PIPELINE
+2025-07-04 15:57:19,919 - INFO - ==================================================
+2025-07-04 15:57:20,511 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:57:20,514 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:57:20,728 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:57:20,731 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:57:21,801 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:57:21,803 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 15:57:22,379 - INFO - ✅ Data analysis completed successfully
+2025-07-04 15:57:22,379 - INFO - ==================================================
+2025-07-04 15:57:22,379 - INFO - STEP 2: RUNNING MODEL TRAINING PIPELINE
+2025-07-04 15:57:22,379 - INFO - ==================================================
+2025-07-04 15:57:30,699 - INFO - ✅ Model training completed successfully
+2025-07-04 15:57:30,700 - INFO - ==================================================
+2025-07-04 15:57:30,700 - INFO - GENERATING FINAL PROJECT REPORT
+2025-07-04 15:57:30,700 - INFO - ==================================================
+2025-07-04 15:57:30,700 - INFO - 📊 Final report generated: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250704_155730.txt
+2025-07-04 15:57:30,700 - INFO - ============================================================
+2025-07-04 15:57:30,700 - INFO - 🎉 PIPELINE COMPLETED SUCCESSFULLY!
+2025-07-04 15:57:30,700 - INFO - ⏱️  Total execution time: 0:00:10.781048
+2025-07-04 15:57:30,700 - INFO - 📊 Final report: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250704_155730.txt
+2025-07-04 15:57:30,700 - INFO - ============================================================
+2025-07-04 16:12:24,665 - INFO - 🚀 STARTING TRAFFIC FORECASTING PROJECT PIPELINE
+2025-07-04 16:12:24,665 - INFO - ============================================================
+2025-07-04 16:12:24,665 - INFO - Data file validated: /Users/vahid/Desktop/website_wata.csv
+2025-07-04 16:12:24,665 - INFO - ==================================================
+2025-07-04 16:12:24,665 - INFO - STEP 1: RUNNING DATA ANALYSIS PIPELINE
+2025-07-04 16:12:24,665 - INFO - ==================================================
+2025-07-04 16:12:25,247 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 16:12:25,251 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 16:12:25,465 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 16:12:25,468 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 16:12:26,544 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 16:12:26,547 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 16:12:27,136 - INFO - ✅ Data analysis completed successfully
+2025-07-04 16:12:27,136 - INFO - ==================================================
+2025-07-04 16:12:27,136 - INFO - STEP 2: RUNNING MODEL TRAINING PIPELINE
+2025-07-04 16:12:27,136 - INFO - ==================================================
+2025-07-04 16:12:35,590 - INFO - ✅ Model training completed successfully
+2025-07-04 16:12:35,590 - INFO - ==================================================
+2025-07-04 16:12:35,590 - INFO - GENERATING FINAL PROJECT REPORT
+2025-07-04 16:12:35,590 - INFO - ==================================================
+2025-07-04 16:12:35,591 - INFO - 📊 Final report generated: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250704_161235.txt
+2025-07-04 16:12:35,591 - INFO - ============================================================
+2025-07-04 16:12:35,591 - INFO - 🎉 PIPELINE COMPLETED SUCCESSFULLY!
+2025-07-04 16:12:35,591 - INFO - ⏱️  Total execution time: 0:00:10.925984
+2025-07-04 16:12:35,591 - INFO - 📊 Final report: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250704_161235.txt
+2025-07-04 16:12:35,591 - INFO - ============================================================
+2025-07-04 22:47:37,007 - INFO - 🚀 STARTING TRAFFIC FORECASTING PROJECT PIPELINE
+2025-07-04 22:47:37,009 - INFO - ============================================================
+2025-07-04 22:47:37,009 - INFO - Data file validated: /Users/vahid/Desktop/website_wata.csv
+2025-07-04 22:47:37,009 - INFO - ==================================================
+2025-07-04 22:47:37,009 - INFO - STEP 1: RUNNING DATA ANALYSIS PIPELINE
+2025-07-04 22:47:37,009 - INFO - ==================================================
+2025-07-04 22:47:37,648 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 22:47:37,651 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 22:47:37,865 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 22:47:37,868 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 22:47:38,940 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 22:47:38,942 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 22:47:39,520 - INFO - ✅ Data analysis completed successfully
+2025-07-04 22:47:39,520 - INFO - ==================================================
+2025-07-04 22:47:39,520 - INFO - STEP 2: RUNNING MODEL TRAINING PIPELINE
+2025-07-04 22:47:39,520 - INFO - ==================================================
+2025-07-04 22:47:48,035 - INFO - ✅ Model training completed successfully
+2025-07-04 22:47:48,036 - INFO - ==================================================
+2025-07-04 22:47:48,036 - INFO - GENERATING FINAL PROJECT REPORT
+2025-07-04 22:47:48,036 - INFO - ==================================================
+2025-07-04 22:47:48,036 - INFO - 📊 Final report generated: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250704_224748.txt
+2025-07-04 22:47:48,036 - INFO - ============================================================
+2025-07-04 22:47:48,036 - INFO - 🎉 PIPELINE COMPLETED SUCCESSFULLY!
+2025-07-04 22:47:48,036 - INFO - ⏱️  Total execution time: 0:00:11.027539
+2025-07-04 22:47:48,036 - INFO - 📊 Final report: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250704_224748.txt
+2025-07-04 22:47:48,036 - INFO - ============================================================
+2025-07-04 23:09:50,693 - INFO - 🚀 STARTING TRAFFIC FORECASTING PROJECT PIPELINE
+2025-07-04 23:09:50,694 - INFO - ============================================================
+2025-07-04 23:09:50,694 - INFO - Data file validated: /Users/vahid/Desktop/website_wata.csv
+2025-07-04 23:09:50,694 - INFO - ==================================================
+2025-07-04 23:09:50,694 - INFO - STEP 1: RUNNING DATA ANALYSIS PIPELINE
+2025-07-04 23:09:50,694 - INFO - ==================================================
+2025-07-04 23:09:51,332 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 23:09:51,336 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 23:09:51,551 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 23:09:51,554 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 23:09:52,637 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 23:09:52,639 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 23:09:53,226 - INFO - ✅ Data analysis completed successfully
+2025-07-04 23:09:53,226 - INFO - ==================================================
+2025-07-04 23:09:53,226 - INFO - STEP 2: RUNNING MODEL TRAINING PIPELINE
+2025-07-04 23:09:53,226 - INFO - ==================================================
+2025-07-04 23:10:01,408 - INFO - ✅ Model training completed successfully
+2025-07-04 23:10:01,410 - INFO - ==================================================
+2025-07-04 23:10:01,410 - INFO - GENERATING FINAL PROJECT REPORT
+2025-07-04 23:10:01,410 - INFO - ==================================================
+2025-07-04 23:10:01,410 - INFO - 📊 Final report generated: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250704_231001.txt
+2025-07-04 23:10:01,410 - INFO - ============================================================
+2025-07-04 23:10:01,410 - INFO - 🎉 PIPELINE COMPLETED SUCCESSFULLY!
+2025-07-04 23:10:01,410 - INFO - ⏱️  Total execution time: 0:00:10.716349
+2025-07-04 23:10:01,410 - INFO - 📊 Final report: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250704_231001.txt
+2025-07-04 23:10:01,410 - INFO - ============================================================
+2025-07-04 23:15:15,063 - INFO - 🚀 STARTING TRAFFIC FORECASTING PROJECT PIPELINE
+2025-07-04 23:15:15,064 - INFO - ============================================================
+2025-07-04 23:15:15,064 - INFO - Data file validated: /Users/vahid/Desktop/website_wata.csv
+2025-07-04 23:15:15,064 - INFO - ==================================================
+2025-07-04 23:15:15,064 - INFO - STEP 1: RUNNING DATA ANALYSIS PIPELINE
+2025-07-04 23:15:15,064 - INFO - ==================================================
+2025-07-04 23:15:15,644 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 23:15:15,646 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 23:15:15,856 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 23:15:15,859 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 23:15:16,924 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 23:15:16,926 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-04 23:15:17,501 - INFO - ✅ Data analysis completed successfully
+2025-07-04 23:15:17,501 - INFO - ==================================================
+2025-07-04 23:15:17,501 - INFO - STEP 2: RUNNING MODEL TRAINING PIPELINE
+2025-07-04 23:15:17,501 - INFO - ==================================================
+2025-07-04 23:15:25,725 - INFO - ✅ Model training completed successfully
+2025-07-04 23:15:25,726 - INFO - ==================================================
+2025-07-04 23:15:25,726 - INFO - GENERATING FINAL PROJECT REPORT
+2025-07-04 23:15:25,726 - INFO - ==================================================
+2025-07-04 23:15:25,726 - INFO - 📊 Final report generated: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250704_231525.txt
+2025-07-04 23:15:25,726 - INFO - ============================================================
+2025-07-04 23:15:25,726 - INFO - 🎉 PIPELINE COMPLETED SUCCESSFULLY!
+2025-07-04 23:15:25,726 - INFO - ⏱️  Total execution time: 0:00:10.662076
+2025-07-04 23:15:25,726 - INFO - 📊 Final report: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250704_231525.txt
+2025-07-04 23:15:25,726 - INFO - ============================================================
+2025-07-05 00:14:31,071 - INFO - 🚀 STARTING TRAFFIC FORECASTING PROJECT PIPELINE
+2025-07-05 00:14:31,071 - INFO - ============================================================
+2025-07-05 00:14:31,071 - INFO - Data file validated: /Users/vahid/Desktop/website_wata.csv
+2025-07-05 00:14:31,071 - INFO - ==================================================
+2025-07-05 00:14:31,071 - INFO - STEP 1: RUNNING DATA ANALYSIS PIPELINE
+2025-07-05 00:14:31,071 - INFO - ==================================================
+2025-07-05 00:14:31,694 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-05 00:14:31,697 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-05 00:14:31,912 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-05 00:14:31,914 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-05 00:14:32,979 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-05 00:14:32,981 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-05 00:14:33,560 - INFO - ✅ Data analysis completed successfully
+2025-07-05 00:14:33,560 - INFO - ==================================================
+2025-07-05 00:14:33,560 - INFO - STEP 2: RUNNING MODEL TRAINING PIPELINE
+2025-07-05 00:14:33,560 - INFO - ==================================================
+2025-07-05 00:14:41,639 - INFO - ✅ Model training completed successfully
+2025-07-05 00:14:41,639 - INFO - ==================================================
+2025-07-05 00:14:41,639 - INFO - GENERATING FINAL PROJECT REPORT
+2025-07-05 00:14:41,639 - INFO - ==================================================
+2025-07-05 00:14:41,639 - INFO - 📊 Final report generated: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250705_001441.txt
+2025-07-05 00:14:41,639 - INFO - ============================================================
+2025-07-05 00:14:41,639 - INFO - 🎉 PIPELINE COMPLETED SUCCESSFULLY!
+2025-07-05 00:14:41,640 - INFO - ⏱️  Total execution time: 0:00:10.568082
+2025-07-05 00:14:41,640 - INFO - 📊 Final report: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250705_001441.txt
+2025-07-05 00:14:41,640 - INFO - ============================================================
+2025-07-05 10:13:43,432 - INFO - 🚀 STARTING TRAFFIC FORECASTING PROJECT PIPELINE
+2025-07-05 10:13:43,432 - INFO - ============================================================
+2025-07-05 10:13:43,432 - INFO - Data file validated: /Users/vahid/Desktop/website_wata.csv
+2025-07-05 10:13:43,432 - INFO - ==================================================
+2025-07-05 10:13:43,432 - INFO - STEP 1: RUNNING DATA ANALYSIS PIPELINE
+2025-07-05 10:13:43,432 - INFO - ==================================================
+2025-07-05 10:13:43,998 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-05 10:13:44,001 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-05 10:13:44,217 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-05 10:13:44,220 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-05 10:13:45,302 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-05 10:13:45,305 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-05 10:13:45,885 - INFO - ✅ Data analysis completed successfully
+2025-07-05 10:13:45,885 - INFO - ==================================================
+2025-07-05 10:13:45,885 - INFO - STEP 2: RUNNING MODEL TRAINING PIPELINE
+2025-07-05 10:13:45,886 - INFO - ==================================================
+2025-07-05 10:13:53,984 - INFO - ✅ Model training completed successfully
+2025-07-05 10:13:53,984 - INFO - ==================================================
+2025-07-05 10:13:53,984 - INFO - GENERATING FINAL PROJECT REPORT
+2025-07-05 10:13:53,984 - INFO - ==================================================
+2025-07-05 10:13:53,985 - INFO - 📊 Final report generated: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250705_101353.txt
+2025-07-05 10:13:53,985 - INFO - ============================================================
+2025-07-05 10:13:53,985 - INFO - 🎉 PIPELINE COMPLETED SUCCESSFULLY!
+2025-07-05 10:13:53,985 - INFO - ⏱️  Total execution time: 0:00:10.552584
+2025-07-05 10:13:53,985 - INFO - 📊 Final report: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250705_101353.txt
+2025-07-05 10:13:53,985 - INFO - ============================================================
+2025-07-05 15:06:14,994 - INFO - 🚀 STARTING TRAFFIC FORECASTING PROJECT PIPELINE
+2025-07-05 15:06:14,994 - INFO - ============================================================
+2025-07-05 15:06:14,994 - INFO - Data file validated: /Users/vahid/Desktop/website_wata.csv
+2025-07-05 15:06:14,994 - INFO - ==================================================
+2025-07-05 15:06:14,994 - INFO - STEP 1: RUNNING DATA ANALYSIS PIPELINE
+2025-07-05 15:06:14,994 - INFO - ==================================================
+2025-07-05 15:06:15,574 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-05 15:06:15,577 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-05 15:06:15,789 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-05 15:06:15,792 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-05 15:06:16,892 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-05 15:06:16,894 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-07-05 15:06:17,478 - INFO - ✅ Data analysis completed successfully
+2025-07-05 15:06:17,478 - INFO - ==================================================
+2025-07-05 15:06:17,478 - INFO - STEP 2: RUNNING MODEL TRAINING PIPELINE
+2025-07-05 15:06:17,478 - INFO - ==================================================
+2025-07-05 15:06:25,520 - INFO - ✅ Model training completed successfully
+2025-07-05 15:06:25,521 - INFO - ==================================================
+2025-07-05 15:06:25,521 - INFO - GENERATING FINAL PROJECT REPORT
+2025-07-05 15:06:25,521 - INFO - ==================================================
+2025-07-05 15:06:25,521 - INFO - 📊 Final report generated: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250705_150625.txt
+2025-07-05 15:06:25,521 - INFO - ============================================================
+2025-07-05 15:06:25,521 - INFO - 🎉 PIPELINE COMPLETED SUCCESSFULLY!
+2025-07-05 15:06:25,521 - INFO - ⏱️  Total execution time: 0:00:10.527075
+2025-07-05 15:06:25,521 - INFO - 📊 Final report: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250705_150625.txt
+2025-07-05 15:06:25,521 - INFO - ============================================================

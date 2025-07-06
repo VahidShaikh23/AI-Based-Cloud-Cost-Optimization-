@@ -1,0 +1,50 @@
+TRAFFIC FORECASTING & AI CLOUD COST OPTIMIZATION PROJECT REPORT
+============================================================
+
+Generated: 2025-07-06 13:16:23
+
+PIPELINE EXECUTION SUMMARY:
+------------------------------
+DATA_ANALYSIS: COMPLETED
+  Timestamp: 2025-07-06T13:16:13.561455
+
+MODEL_TRAINING: COMPLETED
+  Timestamp: 2025-07-06T13:16:23.112192
+
+RL_AGENT_TRAINING: COMPLETED
+  Timestamp: 2025-07-06T13:16:23.124490
+
+GENERATED FILES:
+--------------------
+📂 simulation_results/ (contents):
+  - ✅ simulation_results/simulation_results_20250706_131623.json
+  - ✅ simulation_results/simulation_results_20250706_131541.json
+  - ✅ simulation_results/simulation_results_20250706_124417.json
+  - ✅ simulation_results/simulation_results_20250706_100028.json
+  - ✅ simulation_results/simulation_results_20250705_230531.json
+  - ... (11 more files)
+✅ data/processed_traffic_data.csv
+✅ models/scaler.pkl
+✅ config/feature_columns.json
+✅ config/server_thresholds.json
+✅ output_graphs/traffic_over_time.png
+✅ output_graphs/hourly_patterns.png
+✅ output_graphs/daily_patterns.png
+✅ output_graphs/traffic_heatmap.png
+✅ output_graphs/traffic_distribution_with_thresholds.png
+✅ output_graphs/rl_cost_analysis.png
+✅ output_graphs/traffic_prediction_actual_vs_predicted.png
+✅ output_graphs/traffic_feature_importance.png
+✅ models/rl_agent.pkl
+✅ output_graphs/rl_training_rewards.png
+✅ models/best_traffic_model.pkl
+✅ models/model_metadata.json
+✅ models/evaluation_results.json
+✅ data/traffic_forecast.csv
+✅ models/forecast_report.json
+✅ output_graphs/model_predictions_scatter.png
+✅ output_graphs/time_series_predictions.png
+✅ output_graphs/feature_importance.png
+✅ models/autoscaling_agent.json
+
+Report saved to: /Users/vahid/Desktop/CLOUD_COST_OPT/final_report_20250706_131623.txt

@@ -1,0 +1,42 @@
+{
+  "low_traffic": {
+    "threshold": 3.0,
+    "servers": 1,
+    "instance_type": "t3.micro",
+    "description": "Minimal traffic - single server",
+    "hourly_cost": 0.0104,
+    "daily_cost": 0.2496
+  },
+  "medium_traffic": {
+    "threshold": 5.0,
+    "servers": 2,
+    "instance_type": "t3.small",
+    "description": "Moderate traffic - dual servers",
+    "hourly_cost": 0.0416,
+    "daily_cost": 0.9984
+  },
+  "high_traffic": {
+    "threshold": 6.0,
+    "servers": 3,
+    "instance_type": "t3.medium",
+    "description": "High traffic - three servers",
+    "hourly_cost": 0.1248,
+    "daily_cost": 2.9951999999999996
+  },
+  "peak_traffic": {
+    "threshold": 8.0,
+    "servers": 5,
+    "instance_type": "t3.large",
+    "description": "Peak traffic - maximum scaling",
+    "hourly_cost": 0.416,
+    "daily_cost": 9.984
+  },
+  "extreme_traffic": {
+    "threshold": 9.0,
+    "servers": 8,
+    "instance_type": "t3.xlarge",
+    "description": "Extreme traffic - emergency scaling",
+    "hourly_cost": 1.3312,
+    "daily_cost": 31.9488
+  }
+}
