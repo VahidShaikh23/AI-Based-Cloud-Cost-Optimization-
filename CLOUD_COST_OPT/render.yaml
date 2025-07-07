@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: ai-cloud-optimizer
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python data_analysis.py && python model_training.py && python model_api.py
+    envVars:
+      - key: PORT
+        value: 8000
