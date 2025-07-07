@@ -147,6 +147,8 @@
         .status-healthy { background: radial-gradient(circle, #10b981, #059669); }
         .status-warning { background: radial-gradient(circle, #f59e0b, #d97706); }
         .status-critical { background: radial-gradient(circle, #ef4444, #dc2626); }
+        .online { background: radial-gradient(circle, #10b981, #059669); }
+        .offline { background: radial-gradient(circle, #ef4444, #dc2626); }
 
         @keyframes pulse {
             0%, 100% { opacity: 1; transform: scale(1); }
@@ -178,6 +180,7 @@
             border-radius: 12px;
             background: rgba(102, 126, 234, 0.05);
             border: 1px solid rgba(102, 126, 234, 0.1);
+            transition: all 0.3s ease;
         }
 
         .api-status-item.offline {
@@ -999,7 +1002,7 @@
                     <span class="status-indicator status-warning" id="apiStatusIndicator"></span>
                     <div class="api-status-details">
                         <div class="api-status-name">Main API Server</div>
-                        <div class="api-status-endpoint">http://127.0.0.1:8000</div>
+                        <div class="api-status-endpoint">Dashboard & Prediction API</div>
                     </div>
                 </div>
                 <div class="api-status-item" id="apiStatusPrediction">
@@ -1245,7 +1248,7 @@
         <div class="card">
             <h3><i class="fas fa-network-wired"></i> Live Server Fleet Management</h3>
             <div class="server-list" id="serverList">
-                <p style="text-align: center; color: #666; font-style: italic;">API must be online to manage server fleet. Connect to cloud and make a prediction to see server status.</p>
+                <p style="text-align: center; color: #666; font-style: italic;">Connect to cloud and make a prediction to see server status.</p>
             </div>
         </div>
     </div>
@@ -1258,7 +1261,7 @@
     <script>
         class EnhancedCloudDashboard {
             constructor() {
-                this.apiUrl = 'http://127.0.0.1:8000';
+                this.apiUrl = window.location.origin; // Updated to use current domain
                 this.charts = {};
                 this.realtimeAutoscalingChart = null;
                 this.updateInterval = 15000;
@@ -1390,23 +1393,58 @@
                 });
             }
 
-            async checkApiHealth() {
+            // Enhanced API Status Checking
+            async checkApiStatus() {
                 try {
-                    const response = await fetch(`${this.apiUrl}/health`, {
-                        method: 'GET',
-                        headers: { 'Content-Type': 'application/json' }
-                    });
+                    const response = await fetch(`${this.apiUrl}/api/status`);
+                    if (response.ok) {
+                        const data = await response.json();
+                        document.getElementById('apiStatusIndicator').className = 'status-indicator status-healthy';
+                        document.getElementById('predictionStatusIndicator').className = 'status-indicator status-healthy';
 
+                        // Update API status items
+                        document.getElementById('apiStatusMain').classList.remove('offline');
+                        document.getElementById('apiStatusMain').classList.add('online');
+                        document.getElementById('apiStatusPrediction').classList.remove('offline');
+                        document.getElementById('apiStatusPrediction').classList.add('online');
+
+                        this.isApiOnline = true;
+                        this.enableApiFeatures();
+                        return true;
+                    }
+                } catch (error) {
+                    console.error('API status check failed:', error);
+                }
+
+                // If we reach here, API is offline
+                document.getElementById('apiStatusIndicator').className = 'status-indicator status-critical';
+                document.getElementById('predictionStatusIndicator').className = 'status-indicator status-critical';
+
+                document.getElementById('apiStatusMain').classList.remove('online');
+                document.getElementById('apiStatusMain').classList.add('offline');
+                document.getElementById('apiStatusPrediction').classList.remove('online');
+                document.getElementById('apiStatusPrediction').classList.add('offline');
+
+                this.isApiOnline = false;
+                this.disableApiFeatures();
+                return false;
+            }
+
+            async checkApiHealth() {
+                // Call the status check method
+                await this.checkApiStatus();
+
+                // Also check the health endpoint
+                try {
+                    const response = await fetch(`${this.apiUrl}/health`);
                     if (response.ok) {
                         this.isApiOnline = true;
-                        this.updateApiStatus('online');
                         this.enableApiFeatures();
                     } else {
-                        throw new Error('API not responding');
+                        throw new Error('Health check failed');
                     }
                 } catch (error) {
                     this.isApiOnline = false;
-                    this.updateApiStatus('offline');
                     this.disableApiFeatures();
                 }
             }
@@ -1457,7 +1495,7 @@
                 connectBtn.disabled = false;
 
                 const serverList = document.getElementById('serverList');
-                if (serverList.innerHTML.includes('API must be online')) {
+                if (serverList.innerHTML.includes('Connect to cloud and make a prediction')) {
                     serverList.innerHTML = '<p style="text-align: center; color: #666; font-style: italic;">Connect to cloud and make a prediction to see server status.</p>';
                 }
             }
@@ -1470,7 +1508,7 @@
                 connectBtn.disabled = true;
 
                 const serverList = document.getElementById('serverList');
-                serverList.innerHTML = '<p style="text-align: center; color: #ef4444; font-style: italic;">API must be online to manage server fleet. Please start your API server.</p>';
+                serverList.innerHTML = '<p style="text-align: center; color: #ef4444; font-style: italic;">API is offline. Please ensure your API server is running to use prediction and cloud features.</p>';
 
                 this.showAlert('error', '<i class="fas fa-exclamation-triangle"></i> API is offline. Please start your API server to use prediction and cloud features.');
             }
@@ -1499,6 +1537,12 @@
                     this.isCloudConnected = true;
                     this.updateCloudStatus('connected');
                     this.updateApiStatus('online');
+
+                    // Update cloud status indicator
+                    document.getElementById('cloudStatusIndicator').className = 'status-indicator status-healthy';
+                    document.getElementById('apiStatusCloud').classList.remove('offline');
+                    document.getElementById('apiStatusCloud').classList.add('online');
+
                     this.showAlert('success', '<i class="fas fa-check-circle"></i> Successfully connected to cloud platform!');
                     btnText.textContent = 'Reconnect to Cloud';
                 } catch (error) {
@@ -1838,14 +1882,14 @@
                 });
             }
 
-            // Initialize Real-time Autoscaling Chart
+            // Initialize Real-time Autoscaling Chart with DUAL Y-AXES
             initRealtimeAutoscalingChart(canvasId) {
                 const ctx = document.getElementById(canvasId).getContext('2d');
 
                 const labels = [];
                 const now = new Date();
                 for (let i = 15; i >= 0; i--) {
-                    const time = new Date(now.getTime() - i * 60000); // 1-minute intervals
+                    const time = new Date(now.getTime() - i * 60000);
                     labels.push(time.toLocaleTimeString('en-US', {
                         hour: '2-digit',
                         minute: '2-digit'
@@ -1868,7 +1912,8 @@
                                 borderWidth: 3,
                                 pointBackgroundColor: '#ef4444',
                                 pointBorderColor: '#ffffff',
-                                pointBorderWidth: 1
+                                pointBorderWidth: 1,
+                                yAxisID: 'y' // LEFT Y-AXIS
                             },
                             {
                                 label: '🚀 ML Prediction',
@@ -1882,7 +1927,8 @@
                                 borderWidth: 3,
                                 pointBackgroundColor: '#8b5cf6',
                                 pointBorderColor: '#ffffff',
-                                pointBorderWidth: 1
+                                pointBorderWidth: 1,
+                                yAxisID: 'y' // LEFT Y-AXIS
                             },
                             {
                                 label: '⚙️ Auto-scaled Servers',
@@ -1896,7 +1942,8 @@
                                 pointBackgroundColor: '#10b981',
                                 pointBorderColor: '#ffffff',
                                 pointBorderWidth: 2,
-                                pointStyle: 'rectRot'
+                                pointStyle: 'rectRot',
+                                yAxisID: 'y1' // RIGHT Y-AXIS
                             }
                         ]
                     },
@@ -1926,21 +1973,26 @@
                                 bodyColor: 'white',
                                 borderColor: '#8b5cf6',
                                 borderWidth: 1,
-                                cornerRadius: 6
+                                cornerRadius: 6,
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+
+                                        // Add appropriate units
+                                        if (context.dataset.yAxisID === 'y1') {
+                                            label += Math.round(context.parsed.y) + ' servers';
+                                        } else {
+                                            label += Math.round(context.parsed.y) + ' views/hour';
+                                        }
+                                        return label;
+                                    }
+                                }
                             }
                         },
                         scales: {
-                            y: {
-                                beginAtZero: true,
-                                grid: { color: 'rgba(255, 255, 255, 0.1)' },
-                                ticks: { color: 'rgba(255, 255, 255, 0.8)' },
-                                title: {
-                                    display: true,
-                                    text: 'Traffic / Servers',
-                                    color: 'rgba(255, 255, 255, 0.8)',
-                                    font: { weight: 'bold' }
-                                }
-                            },
                             x: {
                                 grid: { color: 'rgba(255, 255, 255, 0.1)' },
                                 ticks: { color: 'rgba(255, 255, 255, 0.8)' },
@@ -1948,6 +2000,44 @@
                                     display: true,
                                     text: 'Real-time Timeline',
                                     color: 'rgba(255, 255, 255, 0.8)',
+                                    font: { weight: 'bold' }
+                                }
+                            },
+                            y: {
+                                type: 'linear',
+                                display: true,
+                                position: 'left',
+                                beginAtZero: true,
+                                grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                                ticks: {
+                                    color: '#ef4444',
+                                    font: { weight: 'bold' }
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'Traffic (Views/Hour)',
+                                    color: '#ef4444',
+                                    font: { weight: 'bold' }
+                                }
+                            },
+                            y1: {
+                                type: 'linear',
+                                display: true,
+                                position: 'right',
+                                beginAtZero: true,
+                                max: 10, // Set reasonable max for server count
+                                grid: {
+                                    drawOnChartArea: false, // Don't draw grid lines for right axis
+                                },
+                                ticks: {
+                                    color: '#10b981',
+                                    font: { weight: 'bold' },
+                                    stepSize: 1 // Show integers only for servers
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'Server Count',
+                                    color: '#10b981',
                                     font: { weight: 'bold' }
                                 }
                             }
@@ -2026,8 +2116,8 @@
                         this.showEnhancedPredictionResults(result, formData);
                         this.updateChartsWithPrediction(result);
                         this.simulateRealTimeAutoScaling(result);
-                        this.updateServerFleet(result.recommended_servers, result.server_type);
-                        this.updateDashboardMetrics(result.predicted_traffic, result.recommended_servers, result.estimated_cost_per_hour);
+                        this.updateServerFleet(result.recommended_servers, result.server_type || 't3.micro');
+                        this.updateDashboardMetrics(result.predicted_traffic, result.recommended_servers, result.cost_estimate.hourly);
                     } else {
                         this.showAlert('error', `<i class="fas fa-exclamation-circle"></i> Prediction failed: ${result.detail}`);
                     }
@@ -2043,7 +2133,7 @@
             showEnhancedPredictionResults(result, formData) {
                 const alertContainer = document.getElementById('alertContainer');
                 const currentCost = this.historicalCosts[this.historicalCosts.length - 1];
-                const costSavings = Math.max(0, (currentCost - result.estimated_cost_per_hour) * 24 * 30);
+                const costSavings = Math.max(0, (currentCost - result.cost_estimate.hourly) * 24 * 30);
                 const efficiency = (result.predicted_traffic / result.recommended_servers) * 10;
                 const slaCompliance = 99.5 + Math.random() * 0.4;
                 const carbonFootprint = result.recommended_servers * 0.5;
@@ -2065,10 +2155,10 @@
                         </div>
                         <div class="prediction-item">
                             <div class="prediction-value"><i class="fas fa-server"></i> ${result.recommended_servers}</div>
-                            <div class="prediction-label">${result.server_type} Instances</div>
+                            <div class="prediction-label">Recommended Instances</div>
                         </div>
                         <div class="prediction-item">
-                            <div class="prediction-value"><i class="fas fa-dollar-sign"></i> ${result.estimated_cost_per_hour.toFixed(3)}</div>
+                            <div class="prediction-value"><i class="fas fa-dollar-sign"></i> ${result.cost_estimate.hourly.toFixed(2)}</div>
                             <div class="prediction-label">Cost per Hour</div>
                         </div>
                         <div class="prediction-item">
@@ -2158,7 +2248,7 @@
 
                         if (step.updateServerCount) {
                             document.getElementById('currentServers').value = step.updateServerCount;
-                            this.updateDashboardMetrics(result.predicted_traffic, step.updateServerCount, result.estimated_cost_per_hour);
+                            this.updateDashboardMetrics(result.predicted_traffic, step.updateServerCount, result.cost_estimate.hourly);
                         }
 
                         currentStep++;
@@ -2231,7 +2321,7 @@
 
                 steps.push({
                     progress: 40,
-                    message: `Optimal configuration calculated: ${target} × ${result.server_type} instances`,
+                    message: `Optimal configuration calculated: ${target} instances`,
                     type: 'info',
                     icon: 'fas fa-calculator',
                     status: 'Calculating',
@@ -2247,7 +2337,7 @@
                         steps.push({
                             progress: progress,
                             message: diff > 0
-                                ? `ML triggered: Provisioning server ${stepServers} (${result.server_type})`
+                                ? `ML triggered: Provisioning server ${stepServers}`
                                 : `ML triggered: Terminating server ${current - i + 1}`,
                             type: diff > 0 ? 'success' : 'warning',
                             icon: diff > 0 ? 'fas fa-plus-circle' : 'fas fa-minus-circle',
@@ -2278,7 +2368,7 @@
 
                 steps.push({
                     progress: 100,
-                    message: `ML Auto-scaling complete! ${target} servers active, cost: \$${result.estimated_cost_per_hour.toFixed(3)}/hour`,
+                    message: `ML Auto-scaling complete! ${target} servers active, cost: \$${result.cost_estimate.hourly.toFixed(2)}/hour`,
                     type: 'success',
                     icon: 'fas fa-check-double',
                     status: 'Active',
@@ -2299,8 +2389,8 @@
                 this.charts.traffic.data.datasets[1].data.push(result.predicted_traffic);
 
                 this.charts.cost.data.labels.push(currentTime);
-                this.charts.cost.data.datasets[0].data.push(result.estimated_cost_per_hour);
-                this.charts.cost.data.datasets[1].data.push(result.estimated_cost_per_hour);
+                this.charts.cost.data.datasets[0].data.push(result.cost_estimate.hourly);
+                this.charts.cost.data.datasets[1].data.push(result.cost_estimate.hourly);
 
                 this.charts.serverCount.data.labels.push(currentTime);
                 this.charts.serverCount.data.datasets[0].data.push(result.recommended_servers);
@@ -2392,6 +2482,12 @@
             }
 
             startRealTimeUpdates() {
+                // Check API status every 30 seconds
+                setInterval(() => {
+                    this.checkApiStatus();
+                }, 30000);
+
+                // Check general health every 15 seconds
                 setInterval(() => {
                     this.checkApiHealth();
                     this.simulateRealTimeData();
