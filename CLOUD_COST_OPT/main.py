@@ -14,7 +14,7 @@ import socket
 import webbrowser
 import threading
 import time
-import json # Added for handling simulation_results paths in report
+import json  # Added for handling simulation_results paths in report
 
 import uvicorn
 
@@ -31,7 +31,8 @@ try:
     from utils.rl_autoscaling_agent import AutoScalingSimulator
 except ImportError as e:
     print(f"Error importing modules: {e}")
-    print("Make sure data_analysis.py, model_training.py, and utils/rl_autoscaling_agent.py are in the correct directories")
+    print(
+        "Make sure data_analysis.py, model_training.py, and utils/rl_autoscaling_agent.py are in the correct directories")
     sys.exit(1)
 
 # FastAPI imports for the dashboard server
@@ -50,15 +51,15 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# DEFAULT DATASET PATH
-# IMPORTANT: Ensure this path is correct for your system or pass it via command line
-DEFAULT_DATASET_PATH = "/Users/vahid/Desktop/website_wata.csv"
+# DEFAULT DATASET PATH - Updated for Render deployment
+DEFAULT_DATASET_PATH = os.path.join(os.getcwd(), "/Users/vahid/Desktop/website_wata.csv")
 
-# Dashboard configuration
-DASHBOARD_PORT = 8001
+# Dashboard configuration - Updated for Render deployment
+DASHBOARD_PORT = int(os.environ.get("PORT", 8001))
 MODEL_API_PORT = 8000
 DASHBOARD_FILE = "dashboard.html"
 STATIC_DIR = os.path.dirname(os.path.abspath(__file__))
+
 
 # --- Utility functions to get IP addresses ---
 def get_local_ip():
@@ -69,10 +70,11 @@ def get_local_ip():
         s.connect(("8.8.8.8", 80))
         IP = s.getsockname()[0]
     except Exception:
-        IP = "127.0.0.1" # Fallback to localhost
+        IP = "127.0.0.1"  # Fallback to localhost
     finally:
         s.close()
     return IP
+
 
 def get_network_ip():
     """
@@ -86,9 +88,9 @@ def get_network_ip():
         for ip in ip_addresses:
             if not ip.startswith("127.") and not ip.startswith("169.254."):
                 return ip
-        return "127.0.0.1" # Fallback
+        return "127.0.0.1"  # Fallback
     except Exception:
-        return "127.0.0.1" # Fallback
+        return "127.0.0.1"  # Fallback
 
 
 class TrafficForecastingPipeline:
@@ -99,7 +101,7 @@ class TrafficForecastingPipeline:
         self.config = config or {}
         self.data_analyzer = None
         self.model_trainer = None
-        self.pipeline_results = {} # Store results of each step for final report
+        self.pipeline_results = {}  # Store results of each step for final report
 
     def validate_data_file(self):
         """Validate that the data file exists"""
@@ -125,7 +127,7 @@ class TrafficForecastingPipeline:
             df = self.data_analyzer.load_and_explore_data()
             df_clean = self.data_analyzer.preprocess_data()
             df_features = self.data_analyzer.create_time_series_features()
-            self.data_analyzer.calculate_server_thresholds() # This is rule-based, will be superceded by RL
+            self.data_analyzer.calculate_server_thresholds()  # This is rule-based, will be superceded by RL
             self.data_analyzer.visualize_traffic_patterns()
             # Removed: X_train, X_test, y_train, y_test, X_train_orig, X_test_orig = self.data_analyzer.prepare_for_ml()
             # Removed: self.data_analyzer.generate_summary_report()
@@ -134,20 +136,21 @@ class TrafficForecastingPipeline:
                 'status': 'completed',
                 'timestamp': datetime.now().isoformat(),
                 'output_files': [
-                    'data/processed_traffic_data.csv', # This file is now correctly saved in data_analysis.py after feature creation
-                    'models/scaler.pkl', # This is saved by data_analysis.py's train_traffic_prediction_model
-                    'config/feature_columns.json', # This is saved by data_analysis.py
-                    'config/server_thresholds.json', # This is saved by data_analysis.py
+                    'data/processed_traffic_data.csv',
+                    # This file is now correctly saved in data_analysis.py after feature creation
+                    'models/scaler.pkl',  # This is saved by data_analysis.py's train_traffic_prediction_model
+                    'config/feature_columns.json',  # This is saved by data_analysis.py
+                    'config/server_thresholds.json',  # This is saved by data_analysis.py
                     'output_graphs/traffic_over_time.png',
                     'output_graphs/hourly_patterns.png',
                     'output_graphs/daily_patterns.png',
                     'output_graphs/traffic_heatmap.png',
                     'output_graphs/traffic_distribution_with_thresholds.png',
-                    'output_graphs/rl_cost_analysis.png', # Updated plot name
-                    'output_graphs/traffic_prediction_actual_vs_predicted.png', # Saved by data_analysis.py
-                    'output_graphs/traffic_feature_importance.png', # Saved by data_analysis.py
-                    'models/rl_agent.pkl', # Saved by data_analysis.py
-                    'output_graphs/rl_training_rewards.png' # Saved by data_analysis.py
+                    'output_graphs/rl_cost_analysis.png',  # Updated plot name
+                    'output_graphs/traffic_prediction_actual_vs_predicted.png',  # Saved by data_analysis.py
+                    'output_graphs/traffic_feature_importance.png',  # Saved by data_analysis.py
+                    'models/rl_agent.pkl',  # Saved by data_analysis.py
+                    'output_graphs/rl_training_rewards.png'  # Saved by data_analysis.py
                 ]
             }
 
@@ -224,8 +227,8 @@ class TrafficForecastingPipeline:
                     'sla_compliance': results.get('sla_compliance_percentage', 'N/A')
                 },
                 'output_files': [
-                    'models/autoscaling_agent.json', # The trained Q-table for the RL agent
-                    'simulation_results/' # Directory where simulation logs/results are saved
+                    'models/autoscaling_agent.json',  # The trained Q-table for the RL agent
+                    'simulation_results/'  # Directory where simulation logs/results are saved
                 ]
             }
             logger.info("✅ RL Auto-Scaling Agent training completed successfully")
@@ -289,7 +292,7 @@ class TrafficForecastingPipeline:
                             else:
                                 f.write(f"❌ {file_path} (directory missing or not a directory)\n")
                         else:
-                            all_files_listed.append(file_path) # Add regular files
+                            all_files_listed.append(file_path)  # Add regular files
 
             # Now list the regular files
             for file_path in all_files_listed:
@@ -342,15 +345,17 @@ class TrafficForecastingPipeline:
 
         return True
 
+
 # --- FastAPI App for Dashboard ---
 app = FastAPI()
 
-# Mount the directory containing dashboard.html and other static assets (CSS, JS)
-# Assuming dashboard.html, and a 'static' folder (containing style.css, script.js)
-# are directly in the project root.
-# The `html=True` serves index.html if found at the root of the mounted directory.
-# Since dashboard.html is not index.html, we explicitly serve it at '/' route.
-app.mount("/static", StaticFiles(directory=os.path.join(STATIC_DIR, "static")), name="static")
+# Mount static files if directory exists
+try:
+    if os.path.exists(os.path.join(STATIC_DIR, "static")):
+        app.mount("/static", StaticFiles(directory=os.path.join(STATIC_DIR, "static")), name="static")
+except Exception as e:
+    logger.warning(f"Could not mount static files: {e}")
+
 
 @app.get("/")
 async def read_root():
@@ -359,21 +364,23 @@ async def read_root():
     if not os.path.exists(dashboard_path):
         logger.error(f"❌ Dashboard file not found at: {dashboard_path}")
         # Return a simple HTML error page if dashboard.html is missing
-        return FileResponse(
-            status_code=404,
+        from fastapi.responses import HTMLResponse
+        return HTMLResponse(
             content="<h1>404 Not Found</h1><p>Dashboard file not found. Please ensure dashboard.html exists in the root directory.</p>",
-            media_type="text/html"
+            status_code=404
         )
     return FileResponse(dashboard_path)
+
 
 def run_dashboard_server():
     """Run the FastAPI dashboard server in a separate thread."""
     try:
-        # Use log_level='critical' to suppress uvicorn's default access logs
-        # This keeps the main pipeline output cleaner.
-        uvicorn.run(app, host="0.0.0.0", port=DASHBOARD_PORT, log_level='critical')
+        # Updated for Render deployment - use environment PORT
+        port = int(os.environ.get("PORT", DASHBOARD_PORT))
+        uvicorn.run(app, host="0.0.0.0", port=port, log_level='critical')
     except Exception as e:
         logger.error(f"❌ Failed to start dashboard server: {e}")
+
 
 def main():
     """Main entry point"""
@@ -383,6 +390,7 @@ def main():
     parser.add_argument('--config', help='Path to configuration file (optional)')
     parser.add_argument('--verbose', '-v', action='store_true', help='Enable verbose logging')
     parser.add_argument('--no-browser', action='store_true', help='Do not open browser automatically')
+    parser.add_argument('--production', action='store_true', help='Run in production mode (for deployment)')
 
     args = parser.parse_args()
 
@@ -392,70 +400,123 @@ def main():
     # Use the provided data file or default
     data_file = args.data_file
 
-    # Check if the default file exists
-    if data_file == DEFAULT_DATASET_PATH:
-        if not os.path.exists(DEFAULT_DATASET_PATH):
-            print(f"❌ Default dataset not found at: {DEFAULT_DATASET_PATH}")
-            print("\nPlease either:")
-            print("1. Make sure your dataset is at the default location")
-            print("2. Run with: python main.py /path/to/your/dataset.csv")
-            sys.exit(1)
-        else:
-            print(f"✅ Using default dataset: {DEFAULT_DATASET_PATH}")
+    # For production deployment, skip file validation if default file doesn't exist
+    if args.production or os.environ.get("RENDER"):
+        # Look for data file in current directory for Render deployment
+        potential_files = ["website_wata.csv", "data.csv", "traffic_data.csv"]
+        data_file = None
+        for file in potential_files:
+            if os.path.exists(file):
+                data_file = file
+                break
 
-    pipeline = TrafficForecastingPipeline(data_file, args.config)
-    success = pipeline.run_complete_pipeline()
+        if not data_file:
+            # Create a sample dataset for demonstration
+            logger.warning("No data file found, creating sample dataset...")
+            import pandas as pd
+            import numpy as np
+            from datetime import datetime, timedelta
 
-    if success:
-        print("\n🎊 SUCCESS! Your traffic forecasting and RL auto-scaling project pipeline is complete!")
-        print("\nNext steps:")
-        print("1. Review the generated forecast_report.json and traffic_forecast.csv for ML insights.")
-        print("2. Check the RL agent's trained Q-table at 'models/autoscaling_agent.json' and simulation results in 'simulation_results/'.")
-        print("3. Use the trained ML model (models/best_traffic_model.pkl) and RL agent (models/autoscaling_agent.json) for real-time predictions and auto-scaling recommendations.")
-        print("4. Deploy the 'model_api.py' service for dynamic server scaling using the trained RL agent.")
+            # Create sample traffic data
+            start_date = datetime.now() - timedelta(days=30)
+            dates = [start_date + timedelta(hours=i) for i in range(30 * 24)]
+
+            sample_data = {
+                'timestamp': dates,
+                'Page Views': np.random.randint(50, 2000, len(dates)),
+                'session_duration': np.random.uniform(1, 10, len(dates)),
+                'bounce_rate': np.random.uniform(0.2, 0.8, len(dates)),
+                'previous_visits': np.random.randint(0, 20, len(dates)),
+                'conversion_rate': np.random.uniform(0.01, 0.1, len(dates)),
+                'traffic_source': np.random.choice(['Organic', 'Paid', 'Referral', 'Social'], len(dates))
+            }
+
+            df = pd.DataFrame(sample_data)
+            data_file = "sample_traffic_data.csv"
+            df.to_csv(data_file, index=False)
+            logger.info(f"Created sample dataset: {data_file}")
+    else:
+        # Check if the default file exists for local development
+        if data_file == DEFAULT_DATASET_PATH:
+            if not os.path.exists(DEFAULT_DATASET_PATH):
+                print(f"❌ Default dataset not found at: {DEFAULT_DATASET_PATH}")
+                print("\nPlease either:")
+                print("1. Make sure your dataset is at the default location")
+                print("2. Run with: python main.py /path/to/your/dataset.csv")
+                print("3. Use --production flag for deployment")
+                sys.exit(1)
+            else:
+                print(f"✅ Using default dataset: {DEFAULT_DATASET_PATH}")
+
+    # Run the pipeline
+    if data_file:
+        pipeline = TrafficForecastingPipeline(data_file, args.config)
+        success = pipeline.run_complete_pipeline()
+    else:
+        success = True  # Skip pipeline for dashboard-only deployment
+
+    if success or args.production or os.environ.get("RENDER"):
+        if not (args.production or os.environ.get("RENDER")):
+            print("\n🎊 SUCCESS! Your traffic forecasting and RL auto-scaling project pipeline is complete!")
+            print("\nNext steps:")
+            print("1. Review the generated forecast_report.json and traffic_forecast.csv for ML insights.")
+            print(
+                "2. Check the RL agent's trained Q-table at 'models/autoscaling_agent.json' and simulation results in 'simulation_results/'.")
+            print(
+                "3. Use the trained ML model (models/best_traffic_model.pkl) and RL agent (models/autoscaling_agent.json) for real-time predictions and auto-scaling recommendations.")
+            print("4. Deploy the 'model_api.py' service for dynamic server scaling using the trained RL agent.")
 
         # --- Display Dashboard Links ---
         print("\n" + "=" * 60)
-        print("🌐 Dashboard Links:")
-        local_ip = get_local_ip()
-        network_ip = get_network_ip()
+        print("🌐 Dashboard Server Starting...")
 
-        local_dashboard_url = f"http://127.0.0.1:{DASHBOARD_PORT}"
-        network_dashboard_url = f"http://{network_ip}:{DASHBOARD_PORT}"
-        model_api_url = f"http://127.0.0.1:{MODEL_API_PORT}" # For internal communication
-
-        print(f"   Local Dashboard: {local_dashboard_url}")
-        if local_ip != network_ip:
-            print(f"   Network Dashboard: {network_dashboard_url} (Accessible from other devices on your network)")
+        if os.environ.get("RENDER"):
+            print("Running on Render deployment")
         else:
-            print(f"   Network Dashboard: (Same as local, your IP is {network_ip})")
-        print(f"   Model API (for dashboard): {model_api_url}")
-        print("   (Ensure 'model_api.py' is running on port 8000 in a separate terminal or deployment)")
+            local_ip = get_local_ip()
+            network_ip = get_network_ip()
+            local_dashboard_url = f"http://127.0.0.1:{DASHBOARD_PORT}"
+            network_dashboard_url = f"http://{network_ip}:{DASHBOARD_PORT}"
+            model_api_url = f"http://127.0.0.1:{MODEL_API_PORT}"
+
+            print(f"   Local Dashboard: {local_dashboard_url}")
+            if local_ip != network_ip:
+                print(f"   Network Dashboard: {network_dashboard_url} (Accessible from other devices on your network)")
+            else:
+                print(f"   Network Dashboard: (Same as local, your IP is {network_ip})")
+            print(f"   Model API (for dashboard): {model_api_url}")
+            print("   (Ensure 'model_api.py' is running on port 8000 in a separate terminal or deployment)")
+
         print("=" * 60)
 
-        # Start dashboard server in a new thread
-        print(f"\nStarting dashboard server on port {DASHBOARD_PORT}...")
-        dashboard_thread = threading.Thread(target=run_dashboard_server, daemon=True)
-        dashboard_thread.start()
-        # Give the server a moment to start
-        time.sleep(2)
+        # For production/deployment, run the server directly
+        if args.production or os.environ.get("RENDER"):
+            print("Starting dashboard server in production mode...")
+            port = int(os.environ.get("PORT", DASHBOARD_PORT))
+            uvicorn.run(app, host="0.0.0.0", port=port, log_level='info')
+        else:
+            # For local development, run in thread
+            print(f"Starting dashboard server on port {DASHBOARD_PORT}...")
+            dashboard_thread = threading.Thread(target=run_dashboard_server, daemon=True)
+            dashboard_thread.start()
+            time.sleep(2)
 
-        if not args.no_browser:
+            if not args.no_browser:
+                try:
+                    webbrowser.open(local_dashboard_url)
+                    print(f"Opening dashboard in your default browser: {local_dashboard_url}")
+                except Exception as e:
+                    logger.warning(f"Could not open browser automatically: {e}")
+                    print("Please open the dashboard URL manually in your browser.")
+
+            # Keep the main script alive to serve the dashboard
+            print("\nDashboard server is running. Press CTRL+C to stop the pipeline and dashboard.")
             try:
-                webbrowser.open(local_dashboard_url)
-                print(f"Opening dashboard in your default browser: {local_dashboard_url}")
-            except Exception as e:
-                logger.warning(f"Could not open browser automatically: {e}")
-                print("Please open the dashboard URL manually in your browser.")
-
-        # Keep the main script alive to serve the dashboard
-        print("\nDashboard server is running. Press CTRL+C to stop the pipeline and dashboard.")
-        try:
-            while True:
-                time.sleep(1) # Keep main thread alive
-        except KeyboardInterrupt:
-            print("\nShutting down pipeline and dashboard server.")
-            sys.exit(0) # Exit gracefully
+                while True:
+                    time.sleep(1)  # Keep main thread alive
+            except KeyboardInterrupt:
+                print("\nShutting down pipeline and dashboard server.")
+                sys.exit(0)  # Exit gracefully
 
     else:
         print("\n❌ Pipeline failed. Check the logs and console output for details.")
@@ -464,4 +525,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
